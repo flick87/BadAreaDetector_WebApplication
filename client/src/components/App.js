@@ -8,14 +8,6 @@ import MapContainer from './Map'
 
 
 
-function componentDidMount(){
-    return fetch('/testroute')
-        .then(data => data.json())
-            .then(json => console.log(json))
-            .catch(e => console.log(e + ": ERROR"));
-}
-
-componentDidMount();
 
 function App() {
 
@@ -26,7 +18,6 @@ function App() {
             <Header />
             <Graphs />
             <Visualizers />
-          
             <div class="column map">
                 <MapContainer />
                 <MapVisualizer />
