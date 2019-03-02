@@ -1,4 +1,5 @@
-import React from 'react'
+
+import React, {Component}from 'react'
 import './css components/App.css'
 import Header from './Header'
 import Graphs from './Graphs'
@@ -7,26 +8,61 @@ import MapVisualizer from './MapVisualizer'
 import MapContainer from './Map'
 
 
+import {connect} from 'react-redux';
+import {getPoliceCalls} from '../actions/policecallActions';
+import PropTypes from 'prop-types';
 
 
-function App() {
 
 
-    return (
+// function App() {
 
-        <div>
-            <Header />
-            <Graphs />
-            <Visualizers />
-            <div class="column map">
-                <MapContainer />
-                <MapVisualizer />
+//     return (
+        
+//             <div>
+//             <Header />
+//             <Graphs />
+//             <Visualizers />
+//             <div class="column map">
+//                 <MapContainer />
+//                 <MapVisualizer />
+//             </div>
+
+//         </div>
+//         )
+// }
+
+class App extends Component{
+
+    componentDidMount(){
+        this.props.getPoliceCalls();
+    }
+
+    render(){
+        const policeCall = this.props.policeCall;
+        console.log("in render" , policeCall);
+        return (
+            <div>
+                <Header />
+                <Graphs />
+                <Visualizers />
+                <div class="column map">
+                    <MapContainer />
+                    <MapVisualizer />
+                </div>
+                <br />
             </div>
-
-        </div>
         )
+    }
 }
 
+App.PropTypes = {
+    getPoliceCalls: PropTypes.func.isRequired
+}
 
+const mapStateToProps = (state) => ({
+    policeCall: state.policeCall.policeCall
+});
 
-export default App
+// export default App
+export default connect(mapStateToProps, {getPoliceCalls})(App);

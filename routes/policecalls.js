@@ -16,4 +16,8 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/dev', (req, res) => {
+    res.json([{name:'alex', age:22},{name:'joselyne', age: 21}]);
+});
+
 module.exports = router;
