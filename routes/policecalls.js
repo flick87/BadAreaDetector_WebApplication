@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const PoliceCallsModel = require('../models/PoliceCalls');
+const fs = require('fs');
+const partial_data = require('../partial_data');
 
 
 const bucketName = 'rmart167-cos';
@@ -17,7 +19,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/dev', (req, res) => {
-    res.json([{name:'alex', age:22},{name:'joselyne', age: 21}]);
+    res.json(partial_data);
 });
 
 module.exports = router;
