@@ -1,8 +1,9 @@
 import React from 'react'
 import { GaugeGraph, PieChart } from 'carbon-addons-data-viz-react'
 import { Table, TableBody, TableData, TableHead, TableRow, TableRowExpanded, TableHeader } from 'carbon-components-react'
+import {connect} from 'react-redux';
 
-function Visualizer() {
+function Visualizer(props) {
     
         return (
             <div class="column piecharts">
@@ -45,7 +46,17 @@ function Visualizer() {
                             </TableHead>
 
                             <TableBody>
-                                <TableRow>
+                                {props.policeCall.map(({A, H, L, B, I}) => {
+                                    return (<TableRow>
+                                         <TableData>{A}</TableData>
+                                    <TableData>{H}</TableData>
+                                    <TableData>{L}</TableData>
+                                    <TableData>{B}</TableData>
+                                    <TableData>{I}</TableData>
+                                    <TableData>Low</TableData>
+                                    </TableRow>)
+                                })}
+                                {/* <TableRow>
                                     <TableData>P17010000351</TableData>
                                     <TableData>213 N Angeleno Ave</TableData>
                                     <TableData>February 1 17:30</TableData>
@@ -97,7 +108,7 @@ function Visualizer() {
                                     <TableData>4</TableData>
                                     <TableData>P1928</TableData>
                                     <TableData>Low</TableData>
-                                </TableRow>
+                                </TableRow> */}
 
                             </TableBody>
                         </Table>
@@ -107,4 +118,8 @@ function Visualizer() {
         );
 }
 
-export default Visualizer
+const mapStateToProps = (state) => ({
+    policeCall: state.policeCall.policeCall
+});
+
+export default connect(mapStateToProps)(Visualizer);

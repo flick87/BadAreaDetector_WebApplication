@@ -13,25 +13,6 @@ import {getPoliceCalls} from '../actions/policecallActions';
 import PropTypes from 'prop-types';
 
 
-
-
-// function App() {
-
-//     return (
-        
-//             <div>
-//             <Header />
-//             <Graphs />
-//             <Visualizers />
-//             <div class="column map">
-//                 <MapContainer />
-//                 <MapVisualizer />
-//             </div>
-
-//         </div>
-//         )
-// }
-
 class App extends Component{
 
     componentDidMount(){
