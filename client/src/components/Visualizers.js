@@ -44,7 +44,7 @@ function Visualizer(props) {
                                     <TableHeader>Crime in the Area</TableHeader>
                                 </TableRow>
                             </TableHead>
-
+                            
                             <TableBody>
                                 {props.policeCall.map(({A, H, L, B, I}) => {
                                     return (<TableRow>
@@ -56,61 +56,8 @@ function Visualizer(props) {
                                     <TableData>Low</TableData>
                                     </TableRow>)
                                 })}
-                                {/* <TableRow>
-                                    <TableData>P17010000351</TableData>
-                                    <TableData>213 N Angeleno Ave</TableData>
-                                    <TableData>February 1 17:30</TableData>
-                                    <TableData>4</TableData>
-                                    <TableData>P1928</TableData>
-                                    <TableData>Low</TableData>
-                                </TableRow>
-
-                                <TableRow>
-                                    <TableData>P17010000351</TableData>
-                                    <TableData>213 N Angeleno Ave</TableData>
-                                    <TableData>February 1 17:30</TableData>
-                                    <TableData>4</TableData>
-                                    <TableData>P1928</TableData>
-                                    <TableData>Low</TableData>
-                                </TableRow>
-
-                                <TableRow>
-                                    <TableData>P17010000351</TableData>
-                                    <TableData>213 N Angeleno Ave</TableData>
-                                    <TableData>February 1 17:30</TableData>
-                                    <TableData>4</TableData>
-                                    <TableData>P1928</TableData>
-                                    <TableData>Low</TableData>
-                                </TableRow>
-
-                                <TableRow>
-                                    <TableData>P17010000351</TableData>
-                                    <TableData>213 N Angeleno Ave</TableData>
-                                    <TableData>February 1 17:30</TableData>
-                                    <TableData>4</TableData>
-                                    <TableData>P1928</TableData>
-                                    <TableData>Low</TableData>
-                                </TableRow>
-
-                                <TableRow>
-                                    <TableData>P17010000351</TableData>
-                                    <TableData>213 N Angeleno Ave</TableData>
-                                    <TableData>February 1 17:30</TableData>
-                                    <TableData>4</TableData>
-                                    <TableData>P1928</TableData>
-                                    <TableData>Low</TableData>
-                                </TableRow>
-
-                                <TableRow>
-                                    <TableData>P17010000351</TableData>
-                                    <TableData>213 N Angeleno Ave</TableData>
-                                    <TableData>February 1 17:30</TableData>
-                                    <TableData>4</TableData>
-                                    <TableData>P1928</TableData>
-                                    <TableData>Low</TableData>
-                                </TableRow> */}
-
                             </TableBody>
+
                         </Table>
                     </div>
                 </div>
