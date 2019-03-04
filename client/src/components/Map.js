@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
+import { connect } from 'react-redux';
 
 const mapStyles = {
     width: '45%',
     height: '54%'
 };
 
-export class MapContainer extends Component {
-
+export class MapContainer extends Component{
+   
     state = {
         showingInfoWindow: false,  //Hides or the shows the infoWindow
         activeMarker: {},          //Shows the active marker upon click
@@ -29,7 +30,7 @@ export class MapContainer extends Component {
             });
         }
     };
-
+    
     render() {
         return (
             <Map
@@ -41,12 +42,17 @@ export class MapContainer extends Component {
                     lng: -117.16108799
                 }}
             >
+                
 
-                <Marker
-                    onClick={this.onMarkerClick}
-                    name={'Kenyatta International Convention Centre'}
-                    position={{ lat: 37.778519, lng: -122.405640 }}
-                />
+                {this.props.policeCall.map(({ A, M, N }) => {
+                    return (
+                        <Marker
+                            onClick={this.onMarkerClick}
+                            name={A}
+                            position={{ lat: M, lng: N }}
+                        />)
+                })}
+ 
                 <InfoWindow
                     marker={this.state.activeMarker}
                     visible={this.state.showingInfoWindow}
@@ -62,8 +68,12 @@ export class MapContainer extends Component {
 }
 
 
-
-
-export default GoogleApiWrapper({
+const Mcontainer = GoogleApiWrapper({
     apiKey: ''
 })(MapContainer);
+
+const mapStateToProps = (state) => ({
+    policeCall: state.policeCall.policeCall
+});
+
+export default connect(mapStateToProps)(Mcontainer);

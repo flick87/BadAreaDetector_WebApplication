@@ -4,19 +4,60 @@ import { Table, TableBody, TableData, TableHead, TableRow, TableRowExpanded, Tab
 import {connect} from 'react-redux';
 
 function Visualizer(props) {
+
+    var priority = []
+    var totalPriority;
+
+    var gaugeAmount1;
+    var gaugeAmount2;
+    var gaugeAmount3;
+    var gaugeAmount4;
+
+
+    priority.push(1)
+    priority[1] = 0
+    priority.push(2)
+    priority[2] = 0
+    priority.push(3)
+    priority[3] = 0
+    priority.push(4)
+    priority[4] = 0
+
     
-        return (
+
+
+    totalPriority = (priority[1] + priority[2] + priority[3] + priority[4])
+
+    console.log("Total amount of priority 1: " + priority[1])
+    console.log("Total amount of priority 2: " + priority[2])
+    console.log("Total amount of priority 3: " + priority[3])
+    console.log("Total amount of priority 4: " + priority[4])
+    console.log("Total calls: " + totalPriority)
+
+    gaugeAmount1 = Math.round((priority[1] / totalPriority) * 100)
+    gaugeAmount2 = Math.round((priority[2] / totalPriority) * 100)
+    gaugeAmount3 = Math.round((priority[3] / totalPriority) * 100)
+    gaugeAmount4 = Math.round((priority[4] / totalPriority) * 100)
+
+    //console.log("Gauge Amount: " + gaugeAmount1)
+    //console.log("Gauge Amount: " + gaugeAmount2)
+    //console.log("Gauge Amount: " + gaugeAmount3)
+    //console.log("Gauge Amount: " + gaugeAmount4)
+
+    
+    return (
+ 
             <div class="column piecharts">
                 <h1 className="callTypeHeader">Call Type</h1>
 
                 <div className="gauge1">
-                    <h2 className="gaugeText">Assualt</h2>
-                    <div> <GaugeGraph id="Gauge1" size="half" className="This1" /> </div>
+                <h2 className="gaugeText">Assualt</h2>
+                <div> <GaugeGraph id="Gauge1" size="half" className="This1" amount={gaugeAmount1} /> </div>
                 </div>
 
                 <div className="gauge234">
                     <h2 className="gaugeText">Murder</h2>
-                    <div> <GaugeGraph id="Gauge2" amount={'90'} size="half" className="This2" /> </div>
+                    <div> <GaugeGraph id="Gauge2" size="half" className="This2" /> </div>
                 </div>
 
                 <div className="gauge234">
@@ -26,7 +67,7 @@ function Visualizer(props) {
 
                 <div className="gauge234">
                     <h2 className="gaugeText">Car Theft</h2>
-                    <div> <GaugeGraph id="Gauge4" amount={'20'} size="half" className="This2" /> </div>
+                    <div> <GaugeGraph id="Gauge4" size="half" className="This2"  /> </div>
                 </div>
 
 
@@ -44,7 +85,6 @@ function Visualizer(props) {
                                     <TableHeader>Crime in the Area</TableHeader>
                                 </TableRow>
                             </TableHead>
-                            
                             <TableBody>
                                 {props.policeCall.map(({A, H, L, B, I}) => {
                                     return (<TableRow>
@@ -57,7 +97,6 @@ function Visualizer(props) {
                                     </TableRow>)
                                 })}
                             </TableBody>
-
                         </Table>
                     </div>
                 </div>
