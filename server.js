@@ -13,17 +13,7 @@ const LANDING_PAGE_URL = "/web-app-sample.html";
 const LOGIN_URL = "/ibm/bluemix/appid/login";
 const CALLBACK_URL = "/ibm/bluemix/appid/callback";
 
-// app.use(function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     next();
-// });
-
-const corsOptions = {
-    origin: 'http://localhost:3000',
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,
-}
+const UI_BASE_URL = "http://localhost:3000";
 
 //middleware
 app.use(session({
@@ -32,7 +22,7 @@ app.use(session({
     saveUninitialized: true
 }));
 
-app.use(cors(corsOptions));
+app.use(cors())
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -55,6 +45,8 @@ passport.deserializeUser(function(obj, cb) {
     cb(null, obj);
 });
 
+
+
 app.get(LOGIN_URL, passport.authenticate(WebAppStrategy.STRATEGY_NAME, {
 	successRedirect: LANDING_PAGE_URL,
 	forceLogin: true
@@ -63,11 +55,9 @@ app.get(LOGIN_URL, passport.authenticate(WebAppStrategy.STRATEGY_NAME, {
 app.get(CALLBACK_URL, passport.authenticate(WebAppStrategy.STRATEGY_NAME));
 
 app.get('/protected', passport.authenticate(WebAppStrategy.STRATEGY_NAME), (req, res) => {
-    res.json(req.user)
+    res.status(200).json(req.user)
 });
 
-
-// app.use('/api/policecalls', passport.authenticate(WebAppStrategy.STRATEGY_NAME), policecallsRoutes);
 app.use('/api/policecalls', policecallsRoutes);
 
 const PORT = process.env.PORT || 5000;
