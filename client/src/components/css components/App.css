@@ -192,3 +192,35 @@ body {
     padding-top: 52%;
     padding-left : 25%;
 }
+
+/* Data Table CSS */
+
+/*Does not work*/
+.tableStyle{
+    width:60%;
+}
+
+.bodyTable{
+        
+        background-color: #451e3e;
+        margin-right: 20%;
+        padding-right: 20%;
+        padding: 40%;
+        width: auto;
+}
+
+.bodyTable :hover {
+    opacity: 0.7;
+}
+
+.headerUnstyle {
+    border: none;
+    background-color: #651e3e;
+    display: compact;
+    padding-right: 5%
+}
+
+.searchBar {
+    color: aliceblue;
+    background-color: #851E3E;
+}
