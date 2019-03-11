@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 const mapStyles = {
     width: '45%',
-    height: '54%'
+    height: '56.5%'
 };
 
 export class MapContainer extends Component{

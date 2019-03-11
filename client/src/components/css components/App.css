@@ -1,6 +1,5 @@
 body {
     background-color: #051e3e;
-    color: aliceblue;
     font-family: Arial;
     overflow-x: hidden;
 }
@@ -20,7 +19,7 @@ body {
 
 
 
-/* Header/Blog Title */
+/* CSS for Header Component */
 .imageClass {
     padding-top: 13px;
     width: 100px;
@@ -28,9 +27,27 @@ body {
     font-family: 'Gill Sans'
 }
 
-    .header h1 {
+.header h1 {
         font-size: 50px;
-    }
+        color:aliceblue;
+}
+
+.icon {
+    width: 2%;
+    height: 2%;
+    fill: red;
+}
+
+
+
+.header {
+    padding: 2px;
+    text-align: center;
+    background: #851e3e;
+    width: 100%;
+}
+
+
 
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
@@ -54,7 +71,7 @@ body {
 /* Create three unequal columns that floats next to each other */
 .column {
     float: left;
-    padding: 0px;
+    padding: 0%;
 }
 
     /* Left and right column */
@@ -95,13 +112,6 @@ body {
     content: "";
     display: table;
     clear: both;
-}
-
-.header {
-    padding: 2px;
-    text-align: center;
-    background: #851e3e;
-    width: 100%;
 }
 
 .row {
@@ -147,7 +157,7 @@ body {
 }
 
 .gauge234 {
-    width: 192px;
+    width: 18%;
     display: inline-block;
     margin-right: 5%;
 }

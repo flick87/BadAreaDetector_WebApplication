@@ -1,8 +1,6 @@
 import React from 'react'
-import { Table, TableBody, TableData, TableHead, TableRow, TableHeader, DataTable} from 'carbon-components-react'
 import { connect } from 'react-redux';
 import Gauge from './Gauge'
-import { GaugeGraph } from 'carbon-addons-data-viz-react'
 import CallTable from './CallTable'
 
 
@@ -65,8 +63,7 @@ class Visualizer extends React.Component {
         
         return (
 
-            <div class="column piecharts">
-
+            <div class="column piecharts" style={{ color: 'aliceblue' }}>
 
                 {this.props.policeCall.map(({ L }) => {
 
@@ -94,22 +91,14 @@ class Visualizer extends React.Component {
                 <h1 className="callTypeHeader">Call Type</h1>
 
 
-                {console.log("Reeeeeeeeeeeeeeeeeeeeeeee" + this.state.value)}
-
+                
                 <Gauge gaugeSpecs={{ id: "Gauge1", size: "half", amount: this.state.value, valueText: this.state.value + ' %', labelText: ' ', tooltipId: 'Gauge1' }} classProperties={{ className1: 'gauge1', className2: 'gaugeText' }} other={{ title: 'Assault' }} />
                 <Gauge gaugeSpecs={{ id: "Gauge2", size: "half", amount: this.state.value, valueText: this.state.value + ' %', labelText: ' ', tooltipId: 'Gauge2' }} classProperties={{ className1: 'gauge234', className2: 'gaugeText' }} other={{ title: 'Murder' }} />
                 <Gauge gaugeSpecs={{ id: "Gauge3", size: "half", amount: this.state.value, valueText: this.state.value + ' %', labelText: ' ', tooltipId: 'Gauge3' }} classProperties={{ className1: 'gauge234', className2: 'gaugeText' }} other={{ title: 'Ransom' }} />
                 <Gauge gaugeSpecs={{ id: "Gauge4", size: "half", amount: this.state.value, valueText: this.state.value + ' %', labelText: ' ', tooltipId: 'Gauge4' }} classProperties={{ className1: 'gauge234', className2: 'gaugeText' }} other={{ title: 'Car Theft' }} />
 
-                
-                <div className='Gauge5'>
-                    <h2 className='gauge234'>Test</h2>
-                    <div>
-                        <GaugeGraph id='GaugeOther' size='half' className='Gauge234' amount={this.state.value} valueText={this.state.value + ' %'} labelText=' ' tooltipId='Test' total={100} />
-                    </div>
-                </div>
 
-
+                {/*Data Table with all calls*/}
                 <CallTable />
 
             </div>

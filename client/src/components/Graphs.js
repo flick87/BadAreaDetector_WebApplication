@@ -218,7 +218,7 @@ class Graphs extends React.Component {
 
 
                 <div class="column tableright">
-                    <h1 className="graphsHeader">Incoming call stats</h1>
+                    <h1 className="graphsHeader" style={{ color: 'aliceblue' }}>Incoming call stats</h1>
 
                     <div style={{ color: 'black' }}>
                         <LineGraph
