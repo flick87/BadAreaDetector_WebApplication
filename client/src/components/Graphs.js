@@ -57,7 +57,7 @@ class Graphs extends React.Component {
             monthMap[4] = 0
         }
 
-        console.log("Test2")
+        //console.log("Test2")
 
         return (
             <div className="row">

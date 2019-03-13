@@ -49,11 +49,11 @@ class Visualizer extends React.Component {
 
 
 
-        console.log("Total amount of priority 1: " + priority[1])
-        console.log("Total amount of priority 2: " + priority[2])
-        console.log("Total amount of priority 3: " + priority[3])
-        console.log("Total amount of priority 4: " + priority[4])
-        console.log("Total calls: " + totalPriority)
+        //console.log("Total amount of priority 1: " + priority[1])
+        //console.log("Total amount of priority 2: " + priority[2])
+        //console.log("Total amount of priority 3: " + priority[3])
+        //console.log("Total amount of priority 4: " + priority[4])
+        //console.log("Total calls: " + totalPriority)
 
         gaugeAmount1 = Math.round((priority[1] / totalPriority) * 100)
         gaugeAmount2 = Math.round((priority[2] / totalPriority) * 100)
