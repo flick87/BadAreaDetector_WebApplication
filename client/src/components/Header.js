@@ -26,7 +26,7 @@ class Header extends React.Component {
         };
     }
 
-    componentDidMount() {
+    componentWillMount() {
         setInterval(
             () => {
                 this.setState({
@@ -106,7 +106,7 @@ class Header extends React.Component {
                                 console.log(value)
                                 console.log('Toggle val in Slider: ' + liveToggle)
                                 refreshRate = value.value
-                                //this.props.setState({ value: 9000 }) { /* fix this issue, and export data needed to front end */} 
+                                //this.props.setState({ value: 9000 })
                             }}
                         />
 
@@ -163,6 +163,7 @@ class Header extends React.Component {
             </div>
         )
     }
+    
 }
 
 export default Header
