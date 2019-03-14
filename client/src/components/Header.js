@@ -13,6 +13,11 @@ import { iconMenu } from 'carbon-icons'
 class Header extends React.Component {
 
 
+    static defaultProps = {
+        myRefreshRate: 5
+    };
+
+
     constructor(props) {
         super(props);
 
@@ -24,29 +29,45 @@ class Header extends React.Component {
     componentDidMount() {
         setInterval(
             () => {
-                //this.setState({
-                //    value: Math.ceil(Math.random() * 100)
-                //});
-                console.log('Hello');
+                this.setState({
+                    value: Math.ceil(Math.random() * 100)
+                });
+                console.log('Hello: ' + this.state.value);
+                
             },
             this.state.value);
     }
 
+
+
+
+
     render(props) {
 
-        var toggleVal;
+        var liveToggle = true;
+        var refreshRate = 5;
 
         return (
+
             <div>
                 <div className='header'>
                     <h1>The Bad Area Detector System </h1>
                 </div>
 
                 {console.log("This is the prop: " + this.state.value)}
+                
+                {/*console.log(this.props.myRefreshRate)*/}
 
                 <div className='Menu'>
 
-                    <ModalWrapper>
+                    <ModalWrapper
+                        renderTriggerButtonIcon={true}
+                        buttonTriggerText="Menu"
+
+                        handleSubmit={function () {
+                            console.log('Submited...')
+                        }}
+                    >
                         <div style={{ textAlign: "center" }}>
                             Menu
                         </div>
@@ -60,21 +81,20 @@ class Header extends React.Component {
                             onToggle={function (toggled) {
                                 if (toggled) {
                                     console.log('Display live data')
-                                    toggleVal = toggled
-                                    console.log('ToggleVal is: ' + toggleVal)
+                                    liveToggle = toggled
+                                    console.log('ToggleVal is: ' + liveToggle)
                                 }
                                 else {
                                     console.log('Do not display live data')
-                                    toggleVal = toggled
-                                    console.log('ToggleVal is: ' + toggleVal)
+                                    liveToggle = toggled
+                                    console.log('ToggleVal is: ' + liveToggle)
                                 }
-                                
                             }}
                         />
 
                         <hr />
                         <br />
-                        Refresh Rate
+                        Refresh Rate (Seconds)
                         <Slider
                             value={5}
                             min={1}
@@ -84,10 +104,10 @@ class Header extends React.Component {
                             labelText=''
                             onRelease={function (value) {
                                 console.log(value)
-                                console.log('Toggle val in Slider: ' + toggleVal)
-                                
+                                console.log('Toggle val in Slider: ' + liveToggle)
+                                refreshRate = value.value
+                                //this.props.setState({ value: 9000 }) { /* fix this issue, and export data needed to front end */} 
                             }}
-                            disabled={!toggleVal}
                         />
 
                         <hr />
@@ -96,36 +116,29 @@ class Header extends React.Component {
                         <br />
                         <br />
                         <DatePicker
-                            minDate="1/1/2018"
-                            maxDate="8/31/2018"
-                            datePickerType="range"
-                            dateFormat="m/d/Y"
+                            minDate='1/1/2018'
+                            maxDate='8/31/2018'
+                            datePickerType='range'
+                            dateFormat='m/d/Y'
+                            iconDescription='Select between a range of dates'
                             onChange={function (value) {
-
                                 if (value.length > 1) {
-                                    console.log('THE DATE IS CHOSEN: ' + value[0])
-                                    console.log(' ')
-                                    console.log(' ')
-                                    console.log(' ')
-
-
 
                                     console.log('THE DATE IS CHOSEN: ' + value[0])
                                     var date = new Date(value[0])
-                                    console.log('Shortened version: ' + (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear())
+                                    console.log((date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear())
 
+                                    console.log(' ')
+                                    console.log(' ')
+                                    console.log(' ')
 
                                     console.log('THE DATE IS CHOSEN: ' + value[1])
                                     var date2 = new Date(value[1])
-                                    console.log('Shortened version: ' + (date2.getMonth() + 1) + '/' + date2.getDate() + '/' + date2.getFullYear())
+                                    console.log((date2.getMonth() + 1) + '/' + date2.getDate() + '/' + date2.getFullYear());
                                     
-                                    
-                                }
-
-                                else {
-                                    console.log('Start date is chosen')
                                 }
                             }}
+
                         >
 
                             <DatePickerInput

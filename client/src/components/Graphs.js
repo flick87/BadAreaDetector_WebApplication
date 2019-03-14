@@ -187,7 +187,7 @@ class Graphs extends React.Component {
 
 
                 <div class="column tableleft">
-                    <h1 className="graphsHeader" style={{ color: 'aliceblue' }}>Priority Call Stats </h1>
+                    <h1 className="graphsHeader" style={{ color: 'aliceblue', paddingTop: '3%' }}>Priority Call Stats </h1> {/* Remove Padding if Button moves location */}
 
                     <div style={{ color: 'black' }}>
                         <BarGraph

@@ -55,6 +55,21 @@ body {
 
 .Menu {
     background: #851e3e;
+    float: right;
+}
+
+.bxcalendarMove {
+    margin-top: 10%;
+    margin-left: 2%;
+    width: 5%;
+    height: 20%
+
+}
+
+.tester{
+    white-space: nowrap;
+    overflow:hidden;
+    display:inline-block;
 }
 
 
@@ -148,7 +163,7 @@ body {
 
 .graphsHeader {
     text-align: center;
-    margin-top: 1%;
+    margin-top: 2%;
 }
 
 /*Visualizers CSS*/
