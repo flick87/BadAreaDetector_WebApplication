@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 const mapStyles = {
     width: '45%',
-    height: '54%'
+    height: '100%'
 };
 const h4style = {
     color: "black"

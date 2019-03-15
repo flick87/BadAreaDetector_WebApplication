@@ -128,8 +128,10 @@ body {
 
     /* Middle column */
 .column.map {
-    width: 45%;
+    width: 30%;
     background-color: #051e3e;
+    padding-bottom: 0%;
+    margin-bottom: 0%;
 }
 
 /* Clear floats after the columns */
@@ -163,15 +165,15 @@ body {
 
 .graphsHeader {
     text-align: center;
-    margin-top: 2%;
+    margin-top: 1.36%;
 }
 
 /*Visualizers CSS*/
 
 .callTypeHeader {
     text-align: center;
-    padding-top: 3%;
-    padding-bottom: 1.5%;
+    padding-top: 1.5%;
+    padding-bottom: 1%;
 }
 
 .gauge1 {
@@ -196,7 +198,7 @@ body {
     background-color: #251e3e;
     padding-left: 5%;
     padding-right: 5%;
-    padding-top: 3%;
+    padding-top: 1.5%;
     color: black;
 }
 
@@ -223,16 +225,15 @@ body {
 }
 
 /* Map Visualizer CSS */
-.filterSection {
-    padding-top: 52%;
-    padding-left : 25%;
+.mapContainerCSS{
+    padding-bottom:0%;
+    padding-top: 0%;
 }
 
 /* Data Table CSS */
-
 /*Does not work*/
-.tableStyle{
-    width:60%;
+.tableStyle {
+    width: 60%;
 }
 
 .bodyTable{

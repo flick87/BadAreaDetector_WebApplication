@@ -1,12 +1,5 @@
 import React from 'react'
 import { Slider } from 'carbon-components-react'
-import Toolbar, {
-    ToolbarItem,
-    ToolbarTitle,
-    ToolbarOption,
-    ToolbarDivider,
-}
-from '../../node_modules/carbon-components-react/es/components/Toolbar'
 import { OverflowMenu, NumberInput, Toggle, DatePicker, DatePickerInput, ModalWrapper } from 'carbon-components-react'
 import { iconMenu } from 'carbon-icons'
 
