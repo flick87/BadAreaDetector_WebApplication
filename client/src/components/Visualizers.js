@@ -1,111 +1,115 @@
 import React from 'react'
-import { GaugeGraph, PieChart } from 'carbon-addons-data-viz-react'
-import { Table, TableBody, TableData, TableHead, TableRow, TableRowExpanded, TableHeader } from 'carbon-components-react'
-import {connect} from 'react-redux';
-
-function Visualizer(props) {
-
-    var priority = []
-    var totalPriority;
-
-    var gaugeAmount1;
-    var gaugeAmount2;
-    var gaugeAmount3;
-    var gaugeAmount4;
+import { connect } from 'react-redux';
+import Gauge from './Gauge'
+import CallTable from './CallTable'
 
 
-    priority.push(1)
-    priority[1] = 0
-    priority.push(2)
-    priority[2] = 0
-    priority.push(3)
-    priority[3] = 0
-    priority.push(4)
-    priority[4] = 0
+class Visualizer extends React.Component {
 
-    
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            value: 0
+        };
+    }
+
+    componentDidMount() {
+        setInterval(
+            () => {
+                this.setState({
+                    value: Math.ceil(Math.random() * 100)
+                });
+            },
+            5000);
+    }
 
 
-    totalPriority = (priority[1] + priority[2] + priority[3] + priority[4])
+    render() {
 
-    console.log("Total amount of priority 1: " + priority[1])
-    console.log("Total amount of priority 2: " + priority[2])
-    console.log("Total amount of priority 3: " + priority[3])
-    console.log("Total amount of priority 4: " + priority[4])
-    console.log("Total calls: " + totalPriority)
+        var priority = []
+        var totalPriority = 0;
 
-    gaugeAmount1 = Math.round((priority[1] / totalPriority) * 100)
-    gaugeAmount2 = Math.round((priority[2] / totalPriority) * 100)
-    gaugeAmount3 = Math.round((priority[3] / totalPriority) * 100)
-    gaugeAmount4 = Math.round((priority[4] / totalPriority) * 100)
+        var gaugeAmount1 = 0;
+        var gaugeAmount2 = 0;
+        var gaugeAmount3 = 0;
+        var gaugeAmount4 = 0;
 
-    //console.log("Gauge Amount: " + gaugeAmount1)
-    //console.log("Gauge Amount: " + gaugeAmount2)
-    //console.log("Gauge Amount: " + gaugeAmount3)
-    //console.log("Gauge Amount: " + gaugeAmount4)
 
-    
-    return (
- 
-            <div class="column piecharts">
+        priority.push(1)
+        priority[1] = 0
+        priority.push(2)
+        priority[2] = 0
+        priority.push(3)
+        priority[3] = 0
+        priority.push(4)
+        priority[4] = 0
+
+
+
+
+
+        //console.log("Total amount of priority 1: " + priority[1])
+        //console.log("Total amount of priority 2: " + priority[2])
+        //console.log("Total amount of priority 3: " + priority[3])
+        //console.log("Total amount of priority 4: " + priority[4])
+        //console.log("Total calls: " + totalPriority)
+
+        gaugeAmount1 = Math.round((priority[1] / totalPriority) * 100)
+        gaugeAmount2 = Math.round((priority[2] / totalPriority) * 100)
+        gaugeAmount3 = Math.round((priority[3] / totalPriority) * 100)
+        gaugeAmount4 = Math.round((priority[4] / totalPriority) * 100)
+
+        
+        return (
+
+            <div class="column piecharts" style={{ color: 'aliceblue' }}>
+
+                {this.props.policeCall.map(({ L }) => {
+
+                    if (L === '1') {
+                        priority[1]++;
+                        totalPriority++
+                    }
+                    else if (L === '2') {
+                        priority[2]++;
+                        totalPriority++
+                    }
+                    else if (L === '3') {
+                        priority[3]++;
+                        totalPriority++
+                    }
+                    else if (L === '4') {
+                        priority[4]++;
+                        totalPriority++
+                    }
+                })
+                }
+
+
+
                 <h1 className="callTypeHeader">Call Type</h1>
 
-                <div className="gauge1">
-                <h2 className="gaugeText">Assualt</h2>
-                <div> <GaugeGraph id="Gauge1" size="half" className="This1" amount={gaugeAmount1} /> </div>
-                </div>
 
-                <div className="gauge234">
-                    <h2 className="gaugeText">Murder</h2>
-                    <div> <GaugeGraph id="Gauge2" size="half" className="This2" /> </div>
-                </div>
-
-                <div className="gauge234">
-                    <h2 className="gaugeText">Ransom</h2>
-                    <div> <GaugeGraph id="Gauge3" size="half" className="This1" /> </div>
-                </div>
-
-                <div className="gauge234">
-                    <h2 className="gaugeText">Car Theft</h2>
-                    <div> <GaugeGraph id="Gauge4" size="half" className="This2"  /> </div>
-                </div>
+                
+                <Gauge gaugeSpecs={{ id: "Gauge1", size: "half", amount: this.state.value, valueText: this.state.value + ' %', labelText: ' ', tooltipId: 'Gauge1' }} classProperties={{ className1: 'gauge1', className2: 'gaugeText' }} other={{ title: 'Assault' }} />
+                <Gauge gaugeSpecs={{ id: "Gauge2", size: "half", amount: this.state.value, valueText: this.state.value + ' %', labelText: ' ', tooltipId: 'Gauge2' }} classProperties={{ className1: 'gauge234', className2: 'gaugeText' }} other={{ title: 'Murder' }} />
+                <Gauge gaugeSpecs={{ id: "Gauge3", size: "half", amount: this.state.value, valueText: this.state.value + ' %', labelText: ' ', tooltipId: 'Gauge3' }} classProperties={{ className1: 'gauge234', className2: 'gaugeText' }} other={{ title: 'Ransom' }} />
+                <Gauge gaugeSpecs={{ id: "Gauge4", size: "half", amount: this.state.value, valueText: this.state.value + ' %', labelText: ' ', tooltipId: 'Gauge4' }} classProperties={{ className1: 'gauge234', className2: 'gaugeText' }} other={{ title: 'Car Theft' }} />
 
 
-                <div className="callDescSection">
-                    <h1 className="callDescHeader">Call Description</h1>
-                    <div className="scrollBar">
-                        <Table>
-                            <TableHead>
-                                <TableRow header>
-                                    <TableHeader>Incedent Number</TableHeader>
-                                    <TableHeader>Location</TableHeader>
-                                    <TableHeader>Priority</TableHeader>
-                                    <TableHeader>Date</TableHeader>
-                                    <TableHeader>Call Type</TableHeader>
-                                    <TableHeader>Crime in the Area</TableHeader>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {props.policeCall.map(({A, H, L, B, I}) => {
-                                    return (<TableRow>
-                                         <TableData>{A}</TableData>
-                                    <TableData>{H}</TableData>
-                                    <TableData>{L}</TableData>
-                                    <TableData>{B}</TableData>
-                                    <TableData>{I}</TableData>
-                                    <TableData>Low</TableData>
-                                    </TableRow>)
-                                })}
-                            </TableBody>
-                        </Table>
-                    </div>
-                </div>
+                {/*Data Table with all calls*/}
+                <CallTable />
+
             </div>
-        );
+        )
+    }
 }
+
 
 const mapStateToProps = (state) => ({
     policeCall: state.policeCall.policeCall
 });
+
 
 export default connect(mapStateToProps)(Visualizer);

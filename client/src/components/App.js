@@ -3,11 +3,8 @@ import React, {Component}from 'react'
 import './css components/App.css'
 import Header from './Header'
 import Graphs from './Graphs'
-import Visualizers  from './Visualizers'
-import MapVisualizer from './MapVisualizer'
+import Visualizers from './Visualizers'
 import MapContainer from './Map'
-
-
 import {connect} from 'react-redux';
 import {getPoliceCalls} from '../actions/policecallActions';
 import PropTypes from 'prop-types';
@@ -28,8 +25,7 @@ class App extends Component{
                 <Graphs />
                 <Visualizers />
                 <div class="column map">
-                    <MapContainer />
-                    <MapVisualizer />
+                    <MapContainer/>
                 </div>
                 <br />
             </div>
