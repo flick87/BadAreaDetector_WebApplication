@@ -16,6 +16,8 @@ class App extends Component{
         this.props.getPoliceCalls();
     }
 
+
+
     render(){
         const policeCall = this.props.policeCall;
         console.log("in render" , policeCall);
