@@ -3,7 +3,6 @@ const policecallsRoutes = require('./routes/policecalls');
 const path = require('path');
 const {clientId, tenantId, secret, name, oauthServerUrl, redirectUri} = require('./keys/keys').appid_creds;
 const app = express();
-const cookieParser = require("cookie-parser");
 
 // requirements for IBM App ID Service 
 const session = require('express-session');
@@ -22,7 +21,6 @@ const CALLBACK_URL = "/ibm/bluemix/appid/callback";
 const LOGOUT_URL = "/ibm/bluemix/appid/logout";
 const ROP_LOGIN_PAGE_URL = "/ibm/bluemix/appid/rop/login";
 
-app.use(cookieParser());
 const stateicFilePath = path.join(__dirname, 'client', 'build');
 app.use(express.static(path.join(stateicFilePath)));
 
