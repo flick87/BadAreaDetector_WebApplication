@@ -65,6 +65,8 @@ class Visualizer extends React.Component {
 
             <div class="column piecharts" style={{ color: 'aliceblue' }}>
 
+                {console.log('Printing from Visualizer: ' + this.props.refreshValue)}
+
                 {this.props.policeCall.map(({ L }) => {
 
                     if (L === '1') {
@@ -108,7 +110,8 @@ class Visualizer extends React.Component {
 
 
 const mapStateToProps = (state) => ({
-    policeCall: state.policeCall.policeCall
+    policeCall: state.policeCall.policeCall,
+    refreshValue: state.refreshValue
 });
 
 
