@@ -1,4 +1,4 @@
-import { GET_POLICECALLS } from './actionTypes';
+import { GET_POLICECALLS, TOGGLE_LIVE, UPDATE_REFRESH} from './actionTypes';
 
 
 export const getPoliceCalls = () => dispatch =>{
@@ -6,7 +6,9 @@ export const getPoliceCalls = () => dispatch =>{
     // fetch data
     // when data reutrns dispatch to store you have received data and send it as payloadd
     // switch to '/api/policecalls' to receive actual police call data
-    fetch('/api/policecalls/dev')
+    fetch('/api/policecalls/dev', {
+        credentials: 'include',
+      }) // '/api/policecalls/dev'
         .then(data => data.json())
         .then(json => {
             console.log(json)
@@ -14,3 +16,11 @@ export const getPoliceCalls = () => dispatch =>{
         })
         .catch(err => console.log(err));
 };
+
+export const toggleLive = (toggled) => dispatch =>{
+  dispatch({type: TOGGLE_LIVE, payload: toggled});
+}
+
+export const updateRefresh = (value) => dispatch => {
+  dispatch({type: UPDATE_REFRESH, payload: value});
+}
