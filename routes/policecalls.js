@@ -14,9 +14,14 @@ router.get('/', (req, res) => {
             res.json(err);
         }else{
             const count = req.query.count;
-            const d = JSON.parse(result);
-            const send = d.slice(0, count);
-            res.json(send);
+            if(count){
+                const d = JSON.parse(result);
+                const send = d.slice(0, count);
+                res.json(send); 
+            }else{
+                res.json(JSON.parse(result));
+            }
+            
         }
     });
 });

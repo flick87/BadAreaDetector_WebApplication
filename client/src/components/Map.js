@@ -18,7 +18,7 @@ export class MapContainer extends Component {
         showingInfoWindow: false,  //Hides or the shows the infoWindow
         activeMarker: {},          //Shows the active marker upon click
         selectedPlace: {},
-        isHeatVisible: true,
+        isHeatVisible: false,
         isMarkerVisible: true       //Shows the infoWindow to the selected place upon a marker
     };
     handleToggle1 = () => {
@@ -61,14 +61,7 @@ export class MapContainer extends Component {
             "rgba(255, 0, 0, 1)"
         ];
 
-        let heat = <HeatMap
-            gradient={gradient}
-            opacity={3}
-            positions={this.props.policeCall.map(({ M, N }) => {
-                return { lat: M, lng: N };
-            })}
-            radius={30}
-        />
+       
 
 
 
@@ -111,8 +104,16 @@ export class MapContainer extends Component {
                             );
                         }) : null}
 
-                        {this.state.isHeatVisible ? heat : null}
-
+                        {this.state.isHeatVisible ? (
+                                    <HeatMap
+                                        gradient={gradient}
+                                        opacity={3}
+                                        positions={this.props.policeCall.map(({ M, N }) => {
+                                        return { lat: M, lng: N };
+                                        })}
+                                        radius={30}
+                                    />
+                                    ) : null}
 
 
                         <InfoWindow
