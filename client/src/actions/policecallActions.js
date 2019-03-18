@@ -1,4 +1,4 @@
-import { GET_POLICECALLS, TOGGLE_LIVE, UPDATE_REFRESH} from './actionTypes';
+import { GET_POLICECALLS, TOGGLE_LIVE, UPDATE_REFRESH, SET_DATE} from './actionTypes';
 
 
 export const getPoliceCalls = () => dispatch =>{
@@ -24,3 +24,9 @@ export const toggleLive = (toggled) => dispatch =>{
 export const updateRefresh = (value) => dispatch => {
   dispatch({type: UPDATE_REFRESH, payload: value});
 }
+
+export const setDate = (date) => dispatch => {
+  dispatch({type: SET_DATE, payload: date});
+}
+
+

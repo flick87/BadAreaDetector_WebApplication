@@ -3,7 +3,7 @@ import { Slider } from 'carbon-components-react'
 import { Toggle, DatePicker, DatePickerInput, ModalWrapper } from 'carbon-components-react'
 import { iconMenu } from 'carbon-icons'
 import { connect } from 'react-redux';
-import {toggleLive, updateRefresh} from '../actions/policecallActions';
+import {toggleLive, updateRefresh, setDate} from '../actions/policecallActions';
 
 var refreshRate = 5;
 var liveToggle = true
@@ -80,7 +80,7 @@ class Header extends React.Component {
 
                 console.log('Start date: ' + startDate)
                 console.log('End date: ' + endDate)
-
+                this.props.setDate({ startDate: startDate, endDate: endDate });
                 this.setState({ startDate: startDate, endDate: endDate });
 
             }
@@ -172,10 +172,12 @@ class Header extends React.Component {
 const mapStateToProps = (state) => ({
     policeCall: state.policeCall.policeCall,
     refresh: state.policeCall.refreshValue,
-    toggle: state.policeCall.liveToggled
+    toggle: state.policeCall.liveToggled,
+    startDate: state.policeCall.startData,
+    endDate: state.policeCall.endDate
 });
 
 //console.log('This is the header: ' + this.props.refreshValue)
 
 
-export default connect(mapStateToProps, {toggleLive, updateRefresh})(Header)
+export default connect(mapStateToProps, {toggleLive, updateRefresh, setDate})(Header)

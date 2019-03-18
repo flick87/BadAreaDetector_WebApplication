@@ -1,4 +1,4 @@
-import {GET_POLICECALLS, UPDATE_REFRESH, TOGGLE_LIVE} from '../actions/actionTypes';
+import {GET_POLICECALLS, UPDATE_REFRESH, TOGGLE_LIVE, SET_DATE} from '../actions/actionTypes';
 
 const initialState = {
     policeCall:[],
@@ -17,6 +17,8 @@ const policeCallsReducer = (state = initialState, action) => {
             return {...state, refreshValue: action.payload};
         case TOGGLE_LIVE:
             return {...state, liveToggled: !state.liveToggled};
+        case SET_DATE:
+            return {...state, startDate: action.payload.startDate, endDate: action.payload.endDate};
         default:
             return state;
     }
