@@ -21,9 +21,6 @@ const CALLBACK_URL = "/ibm/bluemix/appid/callback";
 const LOGOUT_URL = "/ibm/bluemix/appid/logout";
 const ROP_LOGIN_PAGE_URL = "/ibm/bluemix/appid/rop/login";
 
-const stateicFilePath = path.join(__dirname, 'client', 'build');
-app.use(express.static(path.join(stateicFilePath)));
-
 app.use(cors({credentials: true, origin: 'http://localhost:5000'}));
 
 //middleware
@@ -57,18 +54,23 @@ passport.deserializeUser(function(obj, cb) {
 app.get(CALLBACK_URL, passport.authenticate(WebAppStrategy.STRATEGY_NAME));
 
 app.get('/', function (req, res) {
-    // res.redirect('/protected')
-    res.sendFile('index.html');
+    res.redirect('/protected');
 });
+
+app.get('/main', (req, res) => {
+    const stateicFilePath = path.join(__dirname, 'client', 'build');
+    app.use(express.static(stateicFilePath));
+    res.redirect('index.html');
+}); 
 
 app.get('/protected',(req, res, next) => {
     res.setHeader('Content-Type', 'text/html');
     next();
 }, passport.authenticate(WebAppStrategy.STRATEGY_NAME), function (req, res) {
-    res.sendFile('index.html');
+    res.redirect('/main');
 });
 
-app.use('/api/policecalls', policecallsRoutes);
+app.use('/api/policecalls', passport.authenticate(WebAppStrategy.STRATEGY_NAME), policecallsRoutes);
 
 const PORT = process.env.PORT || 5000;
 
