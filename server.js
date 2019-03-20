@@ -21,8 +21,6 @@ const CALLBACK_URL = "/ibm/bluemix/appid/callback";
 const LOGOUT_URL = "/ibm/bluemix/appid/logout";
 const ROP_LOGIN_PAGE_URL = "/ibm/bluemix/appid/rop/login";
 
-app.use(cors({credentials: true, origin: 'http://localhost:5000'}));
-
 //middleware
 app.use(session({
     secret: '123456',
