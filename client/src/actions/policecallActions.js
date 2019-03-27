@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import { GET_POLICECALLS, TOGGLE_LIVE, UPDATE_REFRESH, FILTERED_DATA} from './actionTypes';
-=======
-import { GET_POLICECALLS, TOGGLE_LIVE, UPDATE_REFRESH, SET_DATE} from './actionTypes';
->>>>>>> dev
 
 
 export const getPoliceCalls = () => dispatch =>{
@@ -12,7 +8,6 @@ export const getPoliceCalls = () => dispatch =>{
     // switch to '/api/policecalls' to receive actual police call data
     fetch('/api/policecalls/dev', {
         credentials: 'include',
-<<<<<<< HEAD
       }) // '/api/policecalls/dev'
         .then(data => data.json())
         .then(json => {
@@ -22,11 +17,6 @@ export const getPoliceCalls = () => dispatch =>{
             //    return new Date(a.B) - new Date(b.B);
             //});
 
-=======
-      })
-        .then(data => data.json())
-        .then(json => {
->>>>>>> dev
             console.log(json)
             dispatch({type: GET_POLICECALLS, payload: json});
         })
@@ -41,14 +31,6 @@ export const updateRefresh = (value) => dispatch => {
   dispatch({type: UPDATE_REFRESH, payload: value});
 }
 
-<<<<<<< HEAD
 export const filteredData = (value) => dispatch => {
     dispatch({ type: FILTERED_DATA, payload: value});
 }
-=======
-export const setDate = (date) => dispatch => {
-  dispatch({type: SET_DATE, payload: date});
-}
-
-
->>>>>>> dev
