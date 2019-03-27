@@ -1,6 +1,7 @@
 import React from 'react'
 import { BarGraph, LineGraph } from 'carbon-addons-data-viz-react'
 import { connect } from 'react-redux';
+import { Tooltip } from 'carbon-components-react'
 
 
 var simulateOnce = true;
@@ -382,7 +383,31 @@ class Graphs extends React.Component {
 
 
                 <div class="column tableleft">
-                    <h1 className="graphsHeader" style={{ color: '#4F6472', paddingTop: '3%' }}>Priority Call Stats </h1> {/* Remove Padding if Button moves location */}
+                    <h1 className="graphsHeader" style={{ color: '#4F6472', paddingTop: '3%' }}> Priority Call Stats {/* Remove Padding if Button moves location */}
+                        <Tooltip showIcon='true' clickToOpen='true' triggerText=''>
+                            <p style={{ textAlign: "center" }}>Priority is based on the urgency of the call.</p>
+                            <hr />
+                            <table className='TooltipTable'>
+                                <ul>
+                                    <li>
+                                        <div className='color-squares' style={{ backgroundColor: '#00A68F' }}></div> Priority 1
+                                    </li>
+                                    <hr />
+                                    <li>
+                                        <div className='color-squares' style={{ backgroundColor: '#3B1A40' }}></div> Priority 2
+                                    </li>
+                                    <hr />
+                                    <li>
+                                        <div className='color-squares' style={{ backgroundColor: '#265077' }}></div> Priority 3
+                                    </li>
+                                    <hr />
+                                    <li>
+                                        <div className='color-squares' style={{ backgroundColor: '#73C2FB' }}></div> Priority 4
+                                    </li>
+                                </ul>
+                            </table>
+                        </Tooltip>
+                    </h1>
 
                     <div style={{ color: 'black' }}>
                         <BarGraph

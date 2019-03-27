@@ -108,6 +108,8 @@ class Visualizer extends React.Component {
             <div class="column piecharts" style={{ color: '#4F6472' }}>
                 <h1 className="callTypeHeader">Call Type</h1>
 
+                
+
                 <div style={{ paddingLeft: '5%' }}>
                     <Gauge value={gaugeAmount1} width={235} height={150} label='Priority1' color='#748B99' />
                     <Gauge value={gaugeAmount2} width={235} height={150} label='Priority2' color='#748B99' />

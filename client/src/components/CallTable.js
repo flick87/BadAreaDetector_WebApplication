@@ -238,9 +238,7 @@ class CallTable extends React.Component {
                                                     <TableRow key={row.id}>
                                                         {row.cells.map(cell => (
                                                             <TableData>
-
-                                                                    {<TableCell key={cell.id}> {cell.value} </TableCell>}
-                                                               
+                                                                    <TableCell key={cell.id}> {cell.value} </TableCell>
                                                             </TableData>
                                                         ))}
                                                     </TableRow>
