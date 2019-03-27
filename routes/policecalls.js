@@ -13,12 +13,23 @@ router.get('/', (req, res) => {
         if(err){
             res.json(err);
         }else{
-            res.json(result);
+            const count = req.query.count;
+            if(count){
+                const d = JSON.parse(result);
+                const send = d.slice(0, count);
+                res.json(send); 
+            }else{
+                res.json(JSON.parse(result));
+            }
+            
         }
     });
 });
 
 router.get('/dev', (req, res) => {
+    const count = req.query.count;
+    console.log(count);
+    console.log(typeof partial_data);
     res.json(partial_data);
 });
 
