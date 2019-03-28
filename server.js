@@ -1,7 +1,7 @@
 const express = require('express');
 const policecallsRoutes = require('./routes/policecalls');
 const path = require('path');
-const {clientId, tenantId, secret, name, oauthServerUrl, redirectUri} = require('./keys/keys').appid_creds;
+const {clientId, tenantId, secret, name, oauthServerUrl} = require('./keys/keys').appid_creds;
 const app = express();
 
 // requirements for IBM App ID Service 
@@ -21,6 +21,10 @@ const CALLBACK_URL = "/ibm/bluemix/appid/callback";
 const LOGOUT_URL = "/ibm/bluemix/appid/logout";
 const ROP_LOGIN_PAGE_URL = "/ibm/bluemix/appid/rop/login";
 
+
+const env = process.env.NODE_ENV || 'dev';
+console.log(`env: ${env}`);
+
 //middleware
 app.use(session({
     secret: '123456',
@@ -30,6 +34,8 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+const redirectUri = (env === 'dev') ? `http://localhost:5000${CALLBACK_URL}` : `https://arodrbadareadetector.mybluemix.net${CALLBACK_URL}`;
 const webAppStrategy = new WebAppStrategy({
     appidServiceEndpoint: 'https://us-south.appid.cloud.ibm.com',
     tenantId: tenantId,
@@ -69,6 +75,11 @@ app.get('/protected',(req, res, next) => {
 });
 
 app.use('/api/policecalls', passport.authenticate(WebAppStrategy.STRATEGY_NAME), policecallsRoutes);
+// if(env === 'dev'){
+//     app.use('/api/policecalls', policecallsRoutes);
+// }else{
+//     app.use('/api/policecalls', passport.authenticate(WebAppStrategy.STRATEGY_NAME), policecallsRoutes);
+// }
 
 const PORT = process.env.PORT || 5000;
 
