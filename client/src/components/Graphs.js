@@ -43,10 +43,7 @@ class Graphs extends React.Component {
                     if (this.props.toggle && this.props.refresh === refresh && (this.props.filteredCalls === null ? this.props.policeCall.length === length : this.props.filteredCalls.length === length)) {
                         if (addCall < obj.length - 1) {
                             this.setState({
-                                value: Math.ceil(Math.random() * 100),
-                                //refreshValue: this.props.refresh,
-                                //liveToggled: this.props.toggle,
-                                //filteredData: this.props.filteredCalls
+                                value: Math.ceil(Math.random() * 100)
                             });
                                 //console.log('Addcall in GRAPH.JS ' + addCall)
                             ++addCall
@@ -368,24 +365,12 @@ class Graphs extends React.Component {
             simulateOnce = true;
         }
 
-        //jan = [[januaryAL[1], januaryAL[2], januaryAL[3], januaryAL[4]], "January"];
-        //janAdd = januaryAL[1] + januaryAL[2] + januaryAL[3] + januaryAL[4]
-        //console.log('This is JAN: ' + jan)
-        //console.log('This is JAN ADD: ' + janAdd)
-
-        //jan = '[[' + januaryAL[1] + ', ' + januaryAL[2] + ', ' + januaryAL[3] + ', ' + januaryAL[4] + '], "January"],';
-
-
         return (
             <div className="row">
-
-
-
-
                 <div class="column tableleft">
                     <h1 className="graphsHeader" style={{ color: '#4F6472', paddingTop: '3%' }}> Priority Call Stats {/* Remove Padding if Button moves location */}
                         <Tooltip showIcon='true' clickToOpen='true' triggerText=''>
-                            <p style={{ textAlign: "center" }}>Priority is based on the urgency of the call.</p>
+                            <p style={{ textAlign: "center" }}>Priority calls are based on the urgency of the police call.</p>
                             <hr />
                             <table className='TooltipTable'>
                                 <ul>

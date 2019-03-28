@@ -6,6 +6,16 @@ import  Gauge  from 'react-svg-gauge'
 var addCall = 0;
 var gaugeDetail = 20;
 var simulateOnce = true;
+var totalPriorityCalls = 0;
+var priority1 = 0;
+var priority2 = 0;
+var priority3 = 0;
+var priority4 = 0;
+
+var gaugeAmount1 = 0;
+var gaugeAmount2 = 0;
+var gaugeAmount3 = 0;
+var gaugeAmount4 = 0;
 
 class Visualizer extends React.Component {
 
@@ -15,16 +25,76 @@ class Visualizer extends React.Component {
         this.state = {
             value: 0
         };
+
+        this.simulate = this.simulate.bind(this)
     }
 
-    simulate() {
+    simulate(obj, refresh, length) {
         setTimeout(
             () => {
-                if (this.props.toggle) {
-                    console.log('From visualizer: ' + this.props.refresh);
-                    gaugeDetail += 10
-                    this.forceUpdate()
-                    this.simulate()
+                //console.log('Displaying!')
+                if (this.props.toggle && this.props.refresh === refresh && (this.props.filteredCalls == null ? this.props.policeCall.length === length : this.props.filteredCalls.length === length)) {
+                    if (addCall < obj.length - 1) {
+
+                        if (obj[addCall].L == 1) {
+                            ++priority1
+                            ++totalPriorityCalls
+                        }
+                        else if (obj[addCall].L == 2) {
+                            ++priority2
+                            ++totalPriorityCalls
+                        }
+                        else if (obj[addCall].L == 3) {
+                            ++priority3
+                            ++totalPriorityCalls
+                        }
+                        else if (obj[addCall].L == 4) {
+                            ++priority4
+                            ++totalPriorityCalls
+                        }
+                        
+
+                        gaugeAmount1 = Math.round((priority1 / totalPriorityCalls) * 100)
+                        gaugeAmount2 = Math.round((priority2 / totalPriorityCalls) * 100)
+                        gaugeAmount3 = Math.round((priority3 / totalPriorityCalls) * 100)
+                        gaugeAmount4 = Math.round((priority4 / totalPriorityCalls) * 100)
+
+
+                        //console.log('THIS IS PRIORITY 1: ' + gaugeAmount1)
+                        //console.log('THIS IS PRIORITY 2: ' + gaugeAmount2)
+                        //console.log('THIS IS PRIORITY 3: ' + gaugeAmount3)
+                        //console.log('THIS IS PRIORITY 4: ' + gaugeAmount4)
+                        //console.log('Priority Call: ' + obj[addCall].L)
+
+
+                        ++addCall
+                        this.forceUpdate()
+                        this.simulate(obj, refresh, length)
+                    }
+                    else {
+                        addCall = 0;
+                        priority1 = 0;
+                        priority2 = 0;
+                        priority3 = 0;
+                        priority4 = 0;
+                        totalPriorityCalls = 0;
+                        simulateOnce = true;
+                        console.log('Simulation has finished!');
+                    }
+                }
+                else {
+                    if (this.props.toggle) {
+                        addCall = 0;
+                        priority1 = 0;
+                        priority2 = 0;
+                        priority3 = 0;
+                        priority4 = 0;
+                        totalPriorityCalls = 0;
+                        this.simulate(this.props.filteredCalls === null ? this.props.policeCall : this.props.filteredCalls, this.props.refresh, this.props.filteredCalls === null ? this.props.policeCall.length : this.props.filteredCalls.length)
+                    }
+                    else {
+                        console.log('Simulation Finished!')
+                    }
                 }
             },
             this.props.refresh * 1000);
@@ -34,74 +104,91 @@ class Visualizer extends React.Component {
     render() {
 
         if (this.props.toggle && simulateOnce) {
+            addCall = 0;
+            priority1 = 0;
+            priority2 = 0;
+            priority3 = 0;
+            priority4 = 0;
+            totalPriorityCalls = 0;
             simulateOnce = false;
-            this.simulate()
+            this.simulate(this.props.filteredCalls == null ? this.props.policeCall : this.props.filteredCalls, this.props.refresh, this.props.filteredCalls == null ? this.props.policeCall.length : this.props.filteredCalls.length)
         }
 
-        //console.log('UPDATED VISUALIZER')
-        //console.log('DETAIL: ' + gaugeDetail)
+        else if (!this.props.toggle) {
+            simulateOnce = true
+        }
 
-        var priority = []
-        var totalPriority = 0;
+        if (!this.props.toggle) {
 
-        var gaugeAmount1 = 0;
-        var gaugeAmount2 = 0;
-        var gaugeAmount3 = 0;
-        var gaugeAmount4 = 0;
-        
+            var priority = []
+            var totalPriority = 0;
 
-        priority.push(1)
-        priority[1] = 0
-        priority.push(2)
-        priority[2] = 0
-        priority.push(3)
-        priority[3] = 0
-        priority.push(4)
-        priority[4] = 0
-        
+            priority.push(1)
+            priority[1] = 0
+            priority.push(2)
+            priority[2] = 0
+            priority.push(3)
+            priority[3] = 0
+            priority.push(4)
+            priority[4] = 0
 
 
+            //console.log('TTEEEESSST')
 
-        console.log("Total amount of priority 1: " + priority[1])
-        console.log("Total amount of priority 2: " + priority[2])
-        console.log("Total amount of priority 3: " + priority[3])
-        console.log("Total amount of priority 4: " + priority[4])
-        console.log("Total calls: " + totalPriority)
+            //console.log("Total amount of priority 1: " + priority[1])
+            //console.log("Total amount of priority 2: " + priority[2])
+            //console.log("Total amount of priority 3: " + priority[3])
+            //console.log("Total amount of priority 4: " + priority[4])
+            //console.log("Total calls: " + totalPriority)
 
-        
-        this.props.policeCall.map(({ L }) => {
+            if (this.props.filteredCalls == null) {
+                this.props.policeCall.map(({ L }) => {
 
-            if (L === '1') {
-                priority[1]++;
-                totalPriority++
+                    if (L === '1') {
+                        priority[1]++;
+                        totalPriority++
+                    }
+                    else if (L === '2') {
+                        priority[2]++;
+                        totalPriority++
+                    }
+                    else if (L === '3') {
+                        priority[3]++;
+                        totalPriority++
+                    }
+                    else if (L === '4') {
+                        priority[4]++;
+                        totalPriority++
+                    }
+                })
             }
-            else if (L === '2') {
-                priority[2]++;
-                totalPriority++
-            }
-            else if (L === '3') {
-                priority[3]++;
-                totalPriority++
-            }
-            else if (L === '4') {
-                priority[4]++;
-                totalPriority++
-            }
-        })
-        
 
-        /*
-         *      <Gauge gaugeSpecs={{ id: "Gauge1", size: "half", amount: gaugeDetail, valueText: this.state.value + ' %', labelText: ' ', tooltipId: 'Gauge1' }} classProperties={{ className1: 'gauge1', className2: 'gaugeText' }} other={{ title: 'Assault' }} />
-                <Gauge gaugeSpecs={{ id: "Gauge2", size: "half", amount: this.state.value, valueText: this.state.value + ' %', labelText: ' ', tooltipId: 'Gauge2' }} classProperties={{ className1: 'gauge234', className2: 'gaugeText' }} other={{ title: 'Murder' }} />
-                <Gauge gaugeSpecs={{ id: "Gauge3", size: "half", amount: this.state.value, valueText: this.state.value + ' %', labelText: ' ', tooltipId: 'Gauge3' }} classProperties={{ className1: 'gauge234', className2: 'gaugeText' }} other={{ title: 'Ransom' }} />
-                <Gauge gaugeSpecs={{ id: "Gauge4", size: "half", amount: this.state.value, valueText: this.state.value + ' %', labelText: ' ', tooltipId: 'Gauge4' }} classProperties={{ className1: 'gauge234', className2: 'gaugeText' }} other={{ title: 'Car Theft' }} />
-         * 
-        */
-        gaugeAmount1 = Math.round((priority[1] / totalPriority) * 100)
-        gaugeAmount2 = Math.round((priority[2] / totalPriority) * 100)
-        gaugeAmount3 = Math.round((priority[3] / totalPriority) * 100)
-        gaugeAmount4 = Math.round((priority[4] / totalPriority) * 100)
-        
+            else {
+                this.props.filteredCalls.map(({ L }) => {
+                    if (L === '1') {
+                        priority[1]++;
+                        totalPriority++
+                    }
+                    else if (L === '2') {
+                        priority[2]++;
+                        totalPriority++
+                    }
+                    else if (L === '3') {
+                        priority[3]++;
+                        totalPriority++
+                    }
+                    else if (L === '4') {
+                        priority[4]++;
+                        totalPriority++
+                    }
+                })
+            }
+
+            gaugeAmount1 = Math.round((priority[1] / totalPriority) * 100)
+            gaugeAmount2 = Math.round((priority[2] / totalPriority) * 100)
+            gaugeAmount3 = Math.round((priority[3] / totalPriority) * 100)
+            gaugeAmount4 = Math.round((priority[4] / totalPriority) * 100)
+        }
         
         return (
 
@@ -129,8 +216,8 @@ class Visualizer extends React.Component {
 const mapStateToProps = (state) => ({
     policeCall: state.policeCall.policeCall,
     refresh: state.policeCall.refreshValue,
-    toggle: state.policeCall.liveToggled
+    toggle: state.policeCall.liveToggled,
+    filteredCalls: state.policeCall.filteredData
 });
-
 
 export default connect(mapStateToProps)(Visualizer);
