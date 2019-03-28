@@ -433,7 +433,7 @@ class Graphs extends React.Component {
                             xAxisLabel={"Time"}
                             yAxisLabel={"Calls"}
                             emptyText={"There is no data. Please start a simulation to display data"}
-                            isXTime={true}
+                            isXTime={false}
                             isUTC={false}
                             timeFormat={"%b"}
                         />
