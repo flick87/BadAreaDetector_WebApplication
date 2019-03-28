@@ -165,6 +165,7 @@ class Header extends React.Component {
                             maxLabel=''
                             labelText=''
                             hideTextInput='true'
+                            disabled={!this.state.liveToggled}
                             onChange={this.sliderHandler}
                         />
 

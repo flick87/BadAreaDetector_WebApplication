@@ -368,7 +368,7 @@ class Graphs extends React.Component {
         return (
             <div className="row">
                 <div class="column tableleft">
-                    <h1 className="graphsHeader" style={{ color: '#4F6472', paddingTop: '3%' }}> Priority Call Stats {/* Remove Padding if Button moves location */}
+                    <h1 className="graphsHeader" style={{ color: '#4F6472', paddingTop: '3%' }}> Priority Call Stats{/* Remove Padding if Button moves location */}
                         <Tooltip showIcon='true' clickToOpen='true' triggerText=''>
                             <p style={{ textAlign: "center" }}>Priority calls are based on the urgency of the police call.</p>
                             <hr />
