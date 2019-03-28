@@ -152,7 +152,6 @@ class Header extends React.Component {
                             id='toggler'
                             toggled={this.state.liveToggled}
                             onToggle={this.toggleHandler}
-                            
                         />
 
                         <hr />
@@ -165,6 +164,7 @@ class Header extends React.Component {
                             minLabel=''
                             maxLabel=''
                             labelText=''
+                            hideTextInput='true'
                             onChange={this.sliderHandler}
                         />
 

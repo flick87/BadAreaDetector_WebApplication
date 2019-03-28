@@ -2,12 +2,12 @@ import React from 'react'
 import { DataTable } from 'carbon-components-react';
 import { connect } from 'react-redux';
 import { TableData } from 'carbon-components-react';
-import { clearInterval, setTimeout } from 'timers';
+import { setTimeout } from 'timers';
 
 var rows;
 var addCall = 0;
 var simulateOnce = true;
-var simulateData = '';
+
 var mapVal = 0;
 
 const {
@@ -28,14 +28,6 @@ class CallTable extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            value: 0,
-            refreshValue: this.props.refresh,
-            liveToggled: this.props.toggle,
-            filteredData: this.props.filteredCalls,
-            index: 0
-        };
-
         this.simulateData = this.simulateData.bind(this)
     }
 
@@ -47,7 +39,7 @@ class CallTable extends React.Component {
 
         setTimeout(() => {
 
-            if (this.props.toggle && this.props.refresh == refresh && (this.props.filteredCalls == null ? this.props.policeCall.length == length : this.props.filteredCalls.length == length)) {
+            if (this.props.toggle && this.props.refresh === refresh && (this.props.filteredCalls === null ? this.props.policeCall.length === length : this.props.filteredCalls.length === length)) {
                 if (addCall < rows.length - 1) {
                     ++addCall
                     mapVal = 0
@@ -238,9 +230,7 @@ class CallTable extends React.Component {
                                                     <TableRow key={row.id}>
                                                         {row.cells.map(cell => (
                                                             <TableData>
-
-                                                                    {<TableCell key={cell.id}> {cell.value} </TableCell>}
-                                                               
+                                                                    <TableCell key={cell.id}> {cell.value} </TableCell>
                                                             </TableData>
                                                         ))}
                                                     </TableRow>
