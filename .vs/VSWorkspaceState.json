@@ -11,10 +11,8 @@
     "\\models",
     "\\routes"
   ],
-<<<<<<< HEAD
+
   "SelectedNode": "\\client\\src\\components\\CallTable.js",
-=======
-  "SelectedNode": "\\client\\src\\components\\Header.js",
->>>>>>> dev
+
   "PreviewInSolutionExplorer": false
 }

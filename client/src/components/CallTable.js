@@ -33,9 +33,6 @@ class CallTable extends React.Component {
 
     
     simulateData(rows, refresh, length) {
-        //console.log('LAUNCHING!')
-        console.log('...Refresh is: ' + refresh + '...length: ' + length + '...Addcall is: ' + addCall)
-
 
         setTimeout(() => {
 
@@ -49,13 +46,13 @@ class CallTable extends React.Component {
                 else { //case: Simulation is finished, but user selects other filtered date
                     addCall = 0;
                     simulateOnce = true;
-                    console.log('Simulation finished!!!')
+                    console.log('Simulation finished!')
                 }
             }
             else {
                 if (this.props.toggle) { //case: Simulation is continuing, but user changes data
                     addCall = 0
-                    console.log('DATA CHANGED')
+                    //console.log('DATA CHANGED')
                     this.forceUpdate()
                     this.simulateData(this.props.filteredCalls == null ? this.displayAllData(this.props.policeCall) : this.displayAllData(this.props.filteredCalls), this.props.refresh, this.props.filteredCalls == null ? this.props.policeCall.length : this.props.filteredCalls.length)
                 }
