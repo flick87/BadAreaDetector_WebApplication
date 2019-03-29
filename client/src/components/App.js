@@ -36,7 +36,7 @@ class App extends Component{
             console.log("in render", policeCall);
             runOnce = false
             this.Loading()
-            console.log('This is running again!')
+            //console.log('This is running again!')
         }
 
         return (
