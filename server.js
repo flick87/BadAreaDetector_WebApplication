@@ -74,12 +74,12 @@ app.get('/protected',(req, res, next) => {
     res.redirect('/main');
 });
 
-app.use('/api/policecalls', passport.authenticate(WebAppStrategy.STRATEGY_NAME), policecallsRoutes);
-// if(env === 'dev'){
-//     app.use('/api/policecalls', policecallsRoutes);
-// }else{
-//     app.use('/api/policecalls', passport.authenticate(WebAppStrategy.STRATEGY_NAME), policecallsRoutes);
-// }
+// app.use('/api/policecalls', passport.authenticate(WebAppStrategy.STRATEGY_NAME), policecallsRoutes);
+if(env === 'dev'){
+    app.use('/api/policecalls', policecallsRoutes);
+}else{
+    app.use('/api/policecalls', passport.authenticate(WebAppStrategy.STRATEGY_NAME), policecallsRoutes);
+}
 
 const PORT = process.env.PORT || 5000;
 
