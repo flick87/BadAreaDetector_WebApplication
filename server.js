@@ -35,7 +35,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-const redirectUri = (env === 'dev') ? `http://localhost:5000${CALLBACK_URL}` : `https://arodrbadareadetector.mybluemix.net${CALLBACK_URL}`;
+const redirectUri = (env === 'dev') ? `http://localhost:5000${CALLBACK_URL}` : `https://badsystem.mybluemix.net${CALLBACK_URL}`;
 const webAppStrategy = new WebAppStrategy({
     appidServiceEndpoint: 'https://us-south.appid.cloud.ibm.com',
     tenantId: tenantId,

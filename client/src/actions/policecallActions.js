@@ -6,21 +6,19 @@ export const getPoliceCalls = () => dispatch =>{
     // fetch data
     // when data reutrns dispatch to store you have received data and send it as payloadd
     // switch to '/api/policecalls' to receive actual police call data
-    fetch('/api/policecalls/dev', {
-        credentials: 'include',
-      }) // '/api/policecalls/dev'
-        .then(data => data.json())
-        .then(json => {
+    fetch('/api/policecalls?count=5000') // '/api/policecalls/dev'
+      .then(data => data.json())
+      .then(json => {
 
-            //Uncomment for sorted policeCalls data
-            //json.sort(function (a, b) {
-            //    return new Date(a.B) - new Date(b.B);
-            //});
+          //Uncomment for sorted policeCalls data
+          //json.sort(function (a, b) {
+          //    return new Date(a.B) - new Date(b.B);
+          //});
 
-            console.log(json)
-            dispatch({type: GET_POLICECALLS, payload: json});
-        })
-        .catch(err => console.log(err));
+          console.log(json)
+          dispatch({type: GET_POLICECALLS, payload: json});
+      })
+      .catch(err => console.log(err));
 };
 
 export const toggleLive = (toggled) => dispatch =>{
