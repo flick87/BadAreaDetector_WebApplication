@@ -6,7 +6,7 @@ export const getPoliceCalls = () => dispatch =>{
     // fetch data
     // when data reutrns dispatch to store you have received data and send it as payloadd
     // switch to '/api/policecalls' to receive actual police call data
-    fetch('/api/policecalls?count=5000') // '/api/policecalls/dev'
+    fetch('/api/policecalls?count=2500') // '/api/policecalls/dev'
       .then(data => data.json())
       .then(json => {
 
