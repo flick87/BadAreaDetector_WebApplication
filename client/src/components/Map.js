@@ -12,7 +12,6 @@ const h4style = {
     color: "black"
 };
 
-var counter = 0; 
 var simulateOnce = true;
 var addCall = 0;
 var obj = null;
@@ -61,7 +60,6 @@ export class MapContainer extends Component {
                     this.simulate(obj, refresh, length);
                 }
                 else {
-                    addCall = 0;
                     simulateOnce = true;
                     console.log('Simulation finished!')
                 }
@@ -99,14 +97,24 @@ export class MapContainer extends Component {
             "rgba(255, 0, 0, 1)"
         ];
 
-        let heat = <HeatMap
+        let heat = this.props.filteredCalls == null ?
+            <HeatMap
             gradient={gradient}
             opacity={3}
             positions={this.props.policeCall.map(({ M, N }) => {
                 return { lat: M, lng: N };
             })}
             radius={30}
-        />
+            />
+            :
+            <HeatMap
+                gradient={gradient}
+                opacity={3}
+                positions={this.props.filteredCalls.map(({ M, N }) => {
+                    return { lat: M, lng: N };
+                })}
+                radius={30}
+            />
 
         //Implement Simulation
         if (this.props.toggle && simulateOnce) {
@@ -118,7 +126,7 @@ export class MapContainer extends Component {
             addCall = 0;
         }
 
-
+        { mapVal = 0 }
         
         return (
             <div>
@@ -141,7 +149,9 @@ export class MapContainer extends Component {
 
 
 
-                        {this.props.toggle ? (
+                        {this.state.isMarkerVisible ? (
+
+                            this.props.toggle ? (
 
                             this.props.filteredCalls == null ? (
 
@@ -209,7 +219,7 @@ export class MapContainer extends Component {
                                             )
                                         })
                                         )
-                                )}
+                                )) : null}
 
                         {this.state.isHeatVisible ? heat : null}
 
@@ -220,22 +230,13 @@ export class MapContainer extends Component {
                             visible={this.state.showingInfoWindow}
                             onClose={this.onClose}
                         >
-
                             <React.Fragment>
                                 <h4 style={h4style}>ID: {this.state.selectedPlace.name}</h4>
                                 <h4 style={h4style}>Date: {this.state.selectedPlace.info}</h4>
-
-                                {/*<h4 style={h4style}>
-              Priority: {this.state.selectedPlace.priority}
-            </h4> */}
-
-                                <h4 style={h4style}>
-                                    Crime Level: {this.state.selectedPlace.story}
-                                </h4>
+                                <h4 style={h4style}>Crime Level: {this.state.selectedPlace.story}</h4>
                             </React.Fragment>
-
-
                         </InfoWindow>
+
                     </Map>
                 </div>
             </div>
