@@ -12,7 +12,7 @@ const h4style = {
     color: "black"
 };
 
-var counter = 0;
+var counter = 0; 
 var simulateOnce = true;
 var addCall = 0;
 var obj = null;
