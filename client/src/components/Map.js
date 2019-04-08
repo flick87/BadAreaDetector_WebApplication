@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker, HeatMap } from 'google-maps-react';
 import { connect } from 'react-redux';
+import { setTimeout } from 'timers';
 
 
 const mapStyles = {
@@ -10,6 +11,12 @@ const mapStyles = {
 const h4style = {
     color: "black"
 };
+
+var counter = 0;
+var simulateOnce = true;
+var addCall = 0;
+var obj = null;
+var mapVal = 0;
 
 
 export class MapContainer extends Component {
@@ -42,6 +49,37 @@ export class MapContainer extends Component {
             });
         }
     };
+
+    simulate(obj, refresh, length) {
+        setTimeout(() => {
+            if (this.props.toggle && this.props.refresh === refresh && (this.props.filteredCalls === null ? this.props.policeCall.length === length : this.props.filteredCalls.length === length)) {
+                if (addCall < length - 1) {
+                    console.log('Simulating from Map')
+                    ++addCall;
+                    mapVal = 0;
+                    this.forceUpdate();
+                    this.simulate(obj, refresh, length);
+                }
+                else {
+                    addCall = 0;
+                    simulateOnce = true;
+                    console.log('Simulation finished!')
+                }
+            }
+            else {
+                if (this.props.toggle) { //case: Simulation is continuing, but user changes data
+                    addCall = 0
+                    this.forceUpdate()
+                    this.simulate(this.props.filteredCalls == null ? this.props.policeCall : this.props.filteredCalls, this.props.refresh, this.props.filteredCalls == null ? this.props.policeCall.length : this.props.filteredCalls.length)
+                }
+                else {
+                    console.log('Simulation Finished!')
+                }
+            }
+        }, this.props.refresh * 1000)
+    }
+    
+
     render() {
 
         const gradient = [
@@ -70,10 +108,18 @@ export class MapContainer extends Component {
             radius={30}
         />
 
+        //Implement Simulation
+        if (this.props.toggle && simulateOnce) {
+            simulateOnce = false;
+            this.simulate(this.props.filteredCalls == null ? this.props.policeCall : this.props.filteredCalls, this.props.refresh, this.props.filteredCalls == null ? this.props.policeCall.length : this.props.filteredCalls.length);
+        }
+        else if (!this.props.toggle) {
+            simulateOnce = true;
+            addCall = 0;
+        }
 
 
-
-
+        
         return (
             <div>
                 <div className="floating-panel">
@@ -84,32 +130,86 @@ export class MapContainer extends Component {
 
                     <Map
                         google={this.props.google}
-                        zoom={14}
+                        zoom={13}
                         style={mapStyles}
                         scrollwheel={true}
                         initialCenter={{
                             lat: 32.71573699,
                             lng: -117.16108799
-
-
-
                         }}
                     >
 
 
 
-                        {this.state.isMarkerVisible ? this.props.policeCall.map(({ A, B, M, N, L, O }) => {
-                            return (
-                                <Marker
-                                    onClick={this.onMarkerClick}
-                                    name={A}
-                                    info={B}
-                                    priority={L}
-                                    position={{ lat: M, lng: N }}
-                                    story={O}
-                                />
-                            );
-                        }) : null}
+                        {this.props.toggle ? (
+
+                            this.props.filteredCalls == null ? (
+
+                             this.props.policeCall.map(({A, B, M, N, L, O }) => {
+
+                                return (
+                                mapVal < addCall ? (
+                                    ++mapVal,
+                                    <Marker
+                                        onClick={this.onMarkerClick}
+                                        name={A}
+                                        info={B}
+                                        priority={L}
+                                        position={{ lat: M, lng: N }}
+                                        story={O}
+                                    />
+                            ) : (
+                                ''
+                                ))
+                                }))
+                                : (this.props.filteredCalls.map(({ A, B, M, N, L, O }) => {
+
+                                    return (
+                                        mapVal < addCall ? (
+                                            ++mapVal,
+                                            <Marker
+                                                onClick={this.onMarkerClick}
+                                                name={A}
+                                                info={B}
+                                                priority={L}
+                                                position={{ lat: M, lng: N }}
+                                                story={O}
+                                            />
+                                        ) : (
+                                                ''
+                                            ))
+                                }))
+                        ) : (
+
+                                this.props.filteredCalls == null ? (
+                                this.props.policeCall.map(({ A, B, M, N, L, O }) => {
+                                    return (
+                                        <Marker
+                                            onClick={this.onMarkerClick}
+                                            name={A}
+                                            info={B}
+                                            priority={L}
+                                            position={{ lat: M, lng: N }}
+                                            story={O}
+                                        />
+                                    )
+                                    })
+                                )
+                                    : (
+                                        this.props.filteredCalls.map(({ A, B, M, N, L, O }) => {
+                                            return (
+                                                <Marker
+                                                    onClick={this.onMarkerClick}
+                                                    name={A}
+                                                    info={B}
+                                                    priority={L}
+                                                    position={{ lat: M, lng: N }}
+                                                    story={O}
+                                                />
+                                            )
+                                        })
+                                        )
+                                )}
 
                         {this.state.isHeatVisible ? heat : null}
 
@@ -125,7 +225,7 @@ export class MapContainer extends Component {
                                 <h4 style={h4style}>ID: {this.state.selectedPlace.name}</h4>
                                 <h4 style={h4style}>Date: {this.state.selectedPlace.info}</h4>
 
-                                {/* <h4 style={h4style}>
+                                {/*<h4 style={h4style}>
               Priority: {this.state.selectedPlace.priority}
             </h4> */}
 
@@ -151,7 +251,10 @@ const Mcontainer = GoogleApiWrapper({
 })(MapContainer);
 
 const mapStateToProps = (state) => ({
-    policeCall: state.policeCall.policeCall
+    policeCall: state.policeCall.policeCall,
+    refresh: state.policeCall.refreshValue,
+    toggle: state.policeCall.liveToggled,
+    filteredCalls: state.policeCall.filteredData
 });
 
 export default connect(mapStateToProps)(Mcontainer);

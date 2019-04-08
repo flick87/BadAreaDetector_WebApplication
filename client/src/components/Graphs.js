@@ -6,8 +6,7 @@ import { Tooltip } from 'carbon-components-react'
 
 var simulateOnce = true;
 var addCall = 0;
-var jan;
-var janAdd;
+
 
 var januaryAL = []
 var februaryAL = []
@@ -198,11 +197,8 @@ class Graphs extends React.Component {
                 this.props.refresh * 1000);
     }
 
-    
     constructGraphs() {
-
-        console.log('Constructing Graphs...')
-
+        
         if (this.props.filteredCalls === null) {
             this.props.policeCall.map(({ B, L }) => {
                 //January
@@ -592,7 +588,7 @@ class Graphs extends React.Component {
 
                     <div style={{ color: '#4F6472' }}>
                         <LineGraph
-                            data={[[[(januaryAL[1] + januaryAL[2] + januaryAL[3] + januaryAL[4])], 1], [[(februaryAL[1] + februaryAL[2] + februaryAL[3] + februaryAL[4])], 2], [[(marchAL[1] + marchAL[2] + marchAL[3] + marchAL[4])], 3], [[(aprilAL[1] + aprilAL[2] + aprilAL[3] + aprilAL[4])], 4], [[(mayAL[1] + mayAL[2] + mayAL[3] + mayAL[4])], 5], [[(juneAL[1] + juneAL[2] + juneAL[3] + juneAL[4])], 6], [[(julyAL[1] + julyAL[2] + julyAL[3] + julyAL[4])], 7], [[(augustAL[1] + augustAL[2] + augustAL[3] + augustAL[4])], 8], [[0], 9]]}
+                            data={[[[(januaryAL[1] + januaryAL[2] + januaryAL[3] + januaryAL[4])], 1], [[(februaryAL[1] + februaryAL[2] + februaryAL[3] + februaryAL[4])], 2], [[(marchAL[1] + marchAL[2] + marchAL[3] + marchAL[4])], 3], [[(aprilAL[1] + aprilAL[2] + aprilAL[3] + aprilAL[4])], 4], [[(mayAL[1] + mayAL[2] + mayAL[3] + mayAL[4])], 5], [[(juneAL[1] + juneAL[2] + juneAL[3] + juneAL[4])], 6], [[(julyAL[1] + julyAL[2] + julyAL[3] + julyAL[4])], 7], [[(augustAL[1] + augustAL[2] + augustAL[3] + augustAL[4])], 8]]}
                             width={820}
                             height={210}
                             xAxisLabel={"Time"}
