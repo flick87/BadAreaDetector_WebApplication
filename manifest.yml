@@ -1,0 +1,10 @@
+applications:
+- path: .
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  name: badsystem
+  host: badsystem
+  disk_quota: 2048M
+ 
+  
