@@ -30,7 +30,7 @@ class Header extends React.Component {
         this.submitHandler = this.submitHandler.bind(this)
     }
 
-    componentDidMount() {
+    componentDidMount() { //Component used to test refresh cycle **uncomment in line 121 to use**
         setTimeout(
             () => {
                 if (toggleInput) {
@@ -118,7 +118,7 @@ class Header extends React.Component {
         }
 
         if (this.state.liveToggled && isToggledAlready) {
-            this.componentDidMount()
+            //this.componentDidMount()
         }
     }
 
@@ -214,4 +214,4 @@ const mapStateToProps = (state) => ({
     filteredCalls: state.policeCall.filteredData
 });
 
-export default connect(mapStateToProps, { getPoliceCalls, toggleLive, updateRefresh, filteredData})(Header)
+export default connect(mapStateToProps, {getPoliceCalls, toggleLive, updateRefresh, filteredData})(Header)

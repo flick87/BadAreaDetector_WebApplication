@@ -3,6 +3,7 @@
   "description": null,
   "version": "0.0.11",
   "dependencies": {
+    "@carbon/icons-react": "^10.0.0",
     "carbon-addons-data-viz-react": "^1.21.0",
     "carbon-components": "^9.84.1",
     "carbon-components-react": "^6.106.1",

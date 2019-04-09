@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker, HeatMap } from 'google-maps-react';
 import { connect } from 'react-redux';
 import { setTimeout } from 'timers';
-
+//import Settings24 from '@carbon/icons-react/es/settings/24'
 
 const mapStyles = {
     width: '45%',
@@ -14,7 +14,6 @@ const h4style = {
 
 var simulateOnce = true;
 var addCall = 0;
-var obj = null;
 var mapVal = 0;
 
 
@@ -53,7 +52,7 @@ export class MapContainer extends Component {
         setTimeout(() => {
             if (this.props.toggle && this.props.refresh === refresh && (this.props.filteredCalls === null ? this.props.policeCall.length === length : this.props.filteredCalls.length === length)) {
                 if (addCall < length - 1) {
-                    console.log('Simulating from Map')
+                    //console.log('Simulating from Map')
                     ++addCall;
                     mapVal = 0;
                     this.forceUpdate();
@@ -61,7 +60,7 @@ export class MapContainer extends Component {
                 }
                 else {
                     simulateOnce = true;
-                    console.log('Simulation finished!')
+                    //console.log('Simulation finished!')
                 }
             }
             else {
@@ -71,12 +70,12 @@ export class MapContainer extends Component {
                     this.simulate(this.props.filteredCalls == null ? this.props.policeCall : this.props.filteredCalls, this.props.refresh, this.props.filteredCalls == null ? this.props.policeCall.length : this.props.filteredCalls.length)
                 }
                 else {
-                    console.log('Simulation Finished!')
+                    //console.log('Simulation Finished!')
                 }
             }
         }, this.props.refresh * 1000)
     }
-    
+
 
     render() {
 
@@ -99,12 +98,12 @@ export class MapContainer extends Component {
 
         let heat = this.props.filteredCalls == null ?
             <HeatMap
-            gradient={gradient}
-            opacity={3}
-            positions={this.props.policeCall.map(({ M, N }) => {
-                return { lat: M, lng: N };
-            })}
-            radius={30}
+                gradient={gradient}
+                opacity={3}
+                positions={this.props.policeCall.map(({ M, N }) => {
+                    return { lat: M, lng: N };
+                })}
+                radius={30}
             />
             :
             <HeatMap
@@ -126,8 +125,8 @@ export class MapContainer extends Component {
             addCall = 0;
         }
 
-        { mapVal = 0 }
-        
+        mapVal = 0
+
         return (
             <div>
                 <div className="floating-panel">
@@ -153,60 +152,46 @@ export class MapContainer extends Component {
 
                             this.props.toggle ? (
 
-                            this.props.filteredCalls == null ? (
-
-                             this.props.policeCall.map(({A, B, M, N, L, O }) => {
-
-                                return (
-                                mapVal < addCall ? (
-                                    ++mapVal,
-                                    <Marker
-                                        onClick={this.onMarkerClick}
-                                        name={A}
-                                        info={B}
-                                        priority={L}
-                                        position={{ lat: M, lng: N }}
-                                        story={O}
-                                    />
-                            ) : (
-                                ''
-                                ))
-                                }))
-                                : (this.props.filteredCalls.map(({ A, B, M, N, L, O }) => {
-
-                                    return (
-                                        mapVal < addCall ? (
-                                            ++mapVal,
-                                            <Marker
-                                                onClick={this.onMarkerClick}
-                                                name={A}
-                                                info={B}
-                                                priority={L}
-                                                position={{ lat: M, lng: N }}
-                                                story={O}
-                                            />
-                                        ) : (
-                                                ''
-                                            ))
-                                }))
-                        ) : (
-
                                 this.props.filteredCalls == null ? (
-                                this.props.policeCall.map(({ A, B, M, N, L, O }) => {
-                                    return (
-                                        <Marker
-                                            onClick={this.onMarkerClick}
-                                            name={A}
-                                            info={B}
-                                            priority={L}
-                                            position={{ lat: M, lng: N }}
-                                            story={O}
-                                        />
-                                    )
-                                    })
-                                )
-                                    : (
-                                        this.props.filteredCalls.map(({ A, B, M, N, L, O }) => {
+
+                                    this.props.policeCall.map(({ A, B, M, N, L, O }) => {
+
+                                        return (
+                                            mapVal < addCall ? (
+                                                ++mapVal,
+                                                <Marker
+                                                    onClick={this.onMarkerClick}
+                                                    name={A}
+                                                    info={B}
+                                                    priority={L}
+                                                    position={{ lat: M, lng: N }}
+                                                    story={O}
+                                                />
+                                            ) : (
+                                                    ''
+                                                ))
+                                    }))
+                                    : (this.props.filteredCalls.map(({ A, B, M, N, L, O }) => {
+
+                                        return (
+                                            mapVal < addCall ? (
+                                                ++mapVal,
+                                                <Marker
+                                                    onClick={this.onMarkerClick}
+                                                    name={A}
+                                                    info={B}
+                                                    priority={L}
+                                                    position={{ lat: M, lng: N }}
+                                                    story={O}
+                                                />
+                                            ) : (
+                                                    ''
+                                                ))
+                                    }))
+                            ) : (
+
+                                    this.props.filteredCalls == null ? (
+                                        this.props.policeCall.map(({ A, B, M, N, L, O }) => {
                                             return (
                                                 <Marker
                                                     onClick={this.onMarkerClick}
@@ -218,6 +203,20 @@ export class MapContainer extends Component {
                                                 />
                                             )
                                         })
+                                    )
+                                        : (
+                                            this.props.filteredCalls.map(({ A, B, M, N, L, O }) => {
+                                                return (
+                                                    <Marker
+                                                        onClick={this.onMarkerClick}
+                                                        name={A}
+                                                        info={B}
+                                                        priority={L}
+                                                        position={{ lat: M, lng: N }}
+                                                        story={O}
+                                                    />
+                                                )
+                                            })
                                         )
                                 )) : null}
 

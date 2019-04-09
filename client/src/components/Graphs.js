@@ -559,14 +559,14 @@ class Graphs extends React.Component {
                             : (
                                 <BarGraph
                                     data={[
-                                        [[januaryAL[1], januaryAL[2], januaryAL[3], januaryAL[4]], "January"],
-                                        [[februaryAL[1], februaryAL[2], februaryAL[3], februaryAL[4]], "February"],
-                                        [[marchAL[1], marchAL[2], marchAL[3], marchAL[4]], "March"],
-                                        [[aprilAL[1], aprilAL[2], aprilAL[3], aprilAL[4]], "April"],
-                                        [[mayAL[1], mayAL[2], mayAL[3], mayAL[4]], "May"],
-                                        [[juneAL[1], juneAL[2], juneAL[3], juneAL[4]], "June"],
-                                        [[julyAL[1], julyAL[2], julyAL[3], julyAL[4]], "July"],
-                                        [[augustAL[1], augustAL[2], augustAL[3], augustAL[4]], "August"]
+                                        [[januaryAL[1], januaryAL[2], januaryAL[3], januaryAL[4]], "January 2017"],
+                                        [[februaryAL[1], februaryAL[2], februaryAL[3], februaryAL[4]], "February 2017"],
+                                        [[marchAL[1], marchAL[2], marchAL[3], marchAL[4]], "March 2017"],
+                                        [[aprilAL[1], aprilAL[2], aprilAL[3], aprilAL[4]], "April 2017"],
+                                        [[mayAL[1], mayAL[2], mayAL[3], mayAL[4]], "May 2017"],
+                                        [[juneAL[1], juneAL[2], juneAL[3], juneAL[4]], "June 2017"],
+                                        [[julyAL[1], julyAL[2], julyAL[3], julyAL[4]], "July 2017"],
+                                        [[augustAL[1], augustAL[2], augustAL[3], augustAL[4]], "August 2017"]
                                     ]}
                                     width={1010}
                                     height={210}
@@ -576,7 +576,7 @@ class Graphs extends React.Component {
                                     yAxisLabel={"Calls"}
                                     emptyText="There is no data. Please start a simulation to display data"
                                     color={['#00a68f', '#3b1a40', '#265077', '#73C2FB']}
-                                    showTooltip={true}
+                                    showTooltip={false}
                                 />)}
                     </div>
                 </div>
@@ -588,15 +588,15 @@ class Graphs extends React.Component {
 
                     <div style={{ color: '#4F6472' }}>
                         <LineGraph
-                            data={[[[(januaryAL[1] + januaryAL[2] + januaryAL[3] + januaryAL[4])], 1], [[(februaryAL[1] + februaryAL[2] + februaryAL[3] + februaryAL[4])], 2], [[(marchAL[1] + marchAL[2] + marchAL[3] + marchAL[4])], 3], [[(aprilAL[1] + aprilAL[2] + aprilAL[3] + aprilAL[4])], 4], [[(mayAL[1] + mayAL[2] + mayAL[3] + mayAL[4])], 5], [[(juneAL[1] + juneAL[2] + juneAL[3] + juneAL[4])], 6], [[(julyAL[1] + julyAL[2] + julyAL[3] + julyAL[4])], 7], [[(augustAL[1] + augustAL[2] + augustAL[3] + augustAL[4])], 8]]}
+                            data={[[[(januaryAL[1] + januaryAL[2] + januaryAL[3] + januaryAL[4])], 1483232461000], [[(februaryAL[1] + februaryAL[2] + februaryAL[3] + februaryAL[4])], 1485910861000], [[(marchAL[1] + marchAL[2] + marchAL[3] + marchAL[4])], 1488330061000], [[(aprilAL[1] + aprilAL[2] + aprilAL[3] + aprilAL[4])], 1491008461000], [[(mayAL[1] + mayAL[2] + mayAL[3] + mayAL[4])], 1493600461000], [[(juneAL[1] + juneAL[2] + juneAL[3] + juneAL[4])], 1496278861000], [[(julyAL[1] + julyAL[2] + julyAL[3] + julyAL[4])], 1498870861000], [[(augustAL[1] + augustAL[2] + augustAL[3] + augustAL[4])], 1501635661000]]} //EPOCH Time gathered from https://www.epochconverter.com/
                             width={820}
                             height={210}
                             xAxisLabel={"Time"}
                             yAxisLabel={"Calls"}
-                            emptyText={"There is no data. Please start a simulation to display data"}
-                            isXTime={false}
+                            emptyText={"There is no data. Please start a simulation to display data."}
                             isUTC={false}
-                            timeFormat={"%b"}
+                            isXTime={true}
+                            timeFormat={"%B %Y"}
                         />
                     </div>
                 </div>
