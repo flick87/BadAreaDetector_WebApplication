@@ -505,7 +505,7 @@ class Graphs extends React.Component {
         return (
             <div className="row">
                 <div class="column tableleft">
-                    <h1 className="graphsHeader" style={{ color: '#4F6472', paddingTop: '3%' }}> Priority Call Stats{/* Remove Padding if Button moves location */}
+                    <h1 className="graphsHeader" style={{ color: '#4F6472', paddingTop: '3.8%' }}> Priority Call Stats{/* Remove Padding if Button moves location */}
                         <Tooltip showIcon='true' clickToOpen='true' triggerText=''>
                             <p style={{ textAlign: "center" }}>Priority calls are based on the urgency of the police call.</p>
                             <hr />
@@ -531,7 +531,7 @@ class Graphs extends React.Component {
                         </Tooltip>
                     </h1>
 
-                    <div style={{ color: 'black' }}>
+                    <div style={{ color: 'black', margin: 'auto', padding: 'auto' }}>
 
                         {this.props.toggle ? (
                             <BarGraph
@@ -553,7 +553,7 @@ class Graphs extends React.Component {
                                 yAxisLabel={"Calls"}
                                 emptyText="There is no data. Please start a simulation to display data"
                                 color={['#00a68f', '#3b1a40', '#265077', '#73C2FB']}
-                                showTooltip={true}
+                                showTooltip={false}
                             />
                         )
                             : (
@@ -576,7 +576,8 @@ class Graphs extends React.Component {
                                     yAxisLabel={"Calls"}
                                     emptyText="There is no data. Please start a simulation to display data"
                                     color={['#00a68f', '#3b1a40', '#265077', '#73C2FB']}
-                                    showTooltip={false}
+                                    showTooltip={true}
+                                    onHover={() => { 1 }}
                                 />)}
                     </div>
                 </div>

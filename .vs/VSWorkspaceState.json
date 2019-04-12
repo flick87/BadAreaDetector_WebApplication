@@ -6,17 +6,8 @@
     "\\client\\src",
     "\\client\\src\\actions",
     "\\client\\src\\components",
-    "\\client\\src\\components\\css components",
-    "\\client\\src\\reducers",
-    "\\models",
-    "\\routes"
+    "\\client\\src\\components\\css components"
   ],
-<<<<<<< HEAD
   "SelectedNode": "\\client\\src\\components\\Map.js",
-=======
-
-  "SelectedNode": "\\client\\src\\components\\CallTable.js",
-
->>>>>>> 457fc5c8ad76fc881c85a91d55c4ff01e6c049b4
   "PreviewInSolutionExplorer": false
 }

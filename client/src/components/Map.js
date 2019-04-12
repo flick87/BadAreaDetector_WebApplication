@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker, HeatMap } from 'google-maps-react';
 import { connect } from 'react-redux';
 import { setTimeout } from 'timers';
-//import Settings24 from '@carbon/icons-react/es/settings/24'
 
 const mapStyles = {
     width: '45%',
