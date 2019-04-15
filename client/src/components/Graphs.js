@@ -505,26 +505,26 @@ class Graphs extends React.Component {
         return (
             <div className="row">
                 <div class="column tableleft">
-                    <h1 className="graphsHeader" style={{ color: '#4F6472', paddingTop: '3.8%' }}> Priority Call Stats{/* Remove Padding if Button moves location */}
+                    <h1 className="graphsHeader" style={{ color: '#8D68EE', paddingTop: '3.8%' }}> Priority Call Stats{/* Remove Padding if Button moves location */}
                         <Tooltip showIcon='true' clickToOpen='true' triggerText=''>
                             <p style={{ textAlign: "center" }}>Priority calls are based on the urgency of the police call.</p>
                             <hr />
                             <table className='TooltipTable'>
                                 <ul>
                                     <li>
-                                        <div className='color-squares' style={{ backgroundColor: '#00A68F' }}></div> Priority 1
+                                        <div className='color-squares' style={{ backgroundColor: '#8D68EE' }}></div> Priority 1
                                     </li>
                                     <hr />
                                     <li>
-                                        <div className='color-squares' style={{ backgroundColor: '#3B1A40' }}></div> Priority 2
+                                        <div className='color-squares' style={{ backgroundColor: '#FE7B6B' }}></div> Priority 2
                                     </li>
                                     <hr />
                                     <li>
-                                        <div className='color-squares' style={{ backgroundColor: '#265077' }}></div> Priority 3
+                                        <div className='color-squares' style={{ backgroundColor: '#F29B05' }}></div> Priority 3
                                     </li>
                                     <hr />
                                     <li>
-                                        <div className='color-squares' style={{ backgroundColor: '#73C2FB' }}></div> Priority 4
+                                        <div className='color-squares' style={{ backgroundColor: '#F9F776' }}></div> Priority 4
                                     </li>
                                 </ul>
                             </table>
@@ -552,7 +552,7 @@ class Graphs extends React.Component {
                                 xAxisLabel={"Months"}
                                 yAxisLabel={"Calls"}
                                 emptyText="There is no data. Please start a simulation to display data"
-                                color={['#00a68f', '#3b1a40', '#265077', '#73C2FB']}
+                                color={['#8D68EE', '#FE7B6B', '#F29B05', '#F9F776']}
                                 showTooltip={false}
                             />
                         )
@@ -575,9 +575,8 @@ class Graphs extends React.Component {
                                     xAxisLabel={"Months"}
                                     yAxisLabel={"Calls"}
                                     emptyText="There is no data. Please start a simulation to display data"
-                                    color={['#00a68f', '#3b1a40', '#265077', '#73C2FB']}
-                                    showTooltip={true}
-                                    onHover={() => { 1 }}
+                                    color={['#8D68EE', '#FE7B6B', '#F29B05', '#F9F776']}
+                                    showTooltip={false}
                                 />)}
                     </div>
                 </div>
@@ -585,7 +584,7 @@ class Graphs extends React.Component {
 
 
                 <div class="column tableright">
-                    <h1 className="graphsHeader" style={{ color: '#4F6472' }}>Incoming Call Stats</h1>
+                    <h1 className="graphsHeader" style={{ color: '#8D68EE' }}>Incoming Call Stats</h1>
 
                     <div style={{ color: '#4F6472' }}>
                         <LineGraph
@@ -598,6 +597,7 @@ class Graphs extends React.Component {
                             isUTC={false}
                             isXTime={true}
                             timeFormat={"%B %Y"}
+                            color={['#8D68EE']}
                         />
                     </div>
                 </div>

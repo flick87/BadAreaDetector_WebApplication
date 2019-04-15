@@ -5,7 +5,7 @@ import { setTimeout } from 'timers';
 
 const mapStyles = {
     width: '45%',
-    height: '57.7%'
+    height: '56.5%'
 };
 const h4style = {
     color: "black"
@@ -14,7 +14,8 @@ const h4style = {
 var simulateOnce = true;
 var addCall = 0;
 var mapVal = 0;
-
+var isLocation = false;
+var locationOnce = 0; //Variable to prevent rerendering due to initial rendering statements
 
 export class MapContainer extends Component {
 
@@ -23,7 +24,9 @@ export class MapContainer extends Component {
         activeMarker: {},          //Shows the active marker upon click
         selectedPlace: {},
         isHeatVisible: true,
-        isMarkerVisible: true       //Shows the infoWindow to the selected place upon a marker
+        isMarkerVisible: true,       //Shows the infoWindow to the selected place upon a marker
+        LocationLat: 0,
+        LocationLong: 0
     };
     handleToggle1 = () => {
         this.setState({ isMarkerVisible: !this.state.isMarkerVisible })
@@ -45,6 +48,23 @@ export class MapContainer extends Component {
                 activeMarker: null
             });
         }
+    };
+
+    decisionURL = L => {
+        let imageURL = "";
+        
+        if (L === "1") {
+            imageURL = "http://maps.google.com/mapfiles/ms/icons/purple-dot.png";
+        } else if (L === "2") {
+            imageURL = "http://maps.google.com/mapfiles/ms/icons/red-dot.png";
+        } else if (L === "3") {
+            imageURL = "http://maps.google.com/mapfiles/ms/icons/orange-dot.png";
+        } else if (L === "4") {
+            imageURL = "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png";
+        } else {
+            imageURL = "http://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_gray.png"; //Temp while we wait to remove `No call types`
+        }
+        return imageURL;
     };
 
     simulate(obj, refresh, length) {
@@ -75,6 +95,11 @@ export class MapContainer extends Component {
         }, this.props.refresh * 1000)
     }
 
+    showPosition = (position) => {
+        var temp1 = position.coords.latitude
+        var temp2 = position.coords.longitude
+        this.setState({ LocationLat: temp1, LocationLong: temp2 })
+    }
 
     render() {
 
@@ -95,24 +120,13 @@ export class MapContainer extends Component {
             "rgba(255, 0, 0, 1)"
         ];
 
-        let heat = this.props.filteredCalls == null ?
-            <HeatMap
-                gradient={gradient}
-                opacity={3}
-                positions={this.props.policeCall.map(({ M, N }) => {
-                    return { lat: M, lng: N };
-                })}
-                radius={30}
-            />
-            :
-            <HeatMap
-                gradient={gradient}
-                opacity={3}
-                positions={this.props.filteredCalls.map(({ M, N }) => {
-                    return { lat: M, lng: N };
-                })}
-                radius={30}
-            />
+        //Implement User Marker
+        if (navigator.geolocation && locationOnce <= 2) {
+            isLocation = true
+            console.log('TEST')
+            navigator.geolocation.getCurrentPosition(this.showPosition)
+        }
+
 
         //Implement Simulation
         if (this.props.toggle && simulateOnce) {
@@ -145,21 +159,29 @@ export class MapContainer extends Component {
                         }}
                     >
 
+                        {isLocation ? (
+                            console.log('Display Marker True'),
+                            ++locationOnce,
+                            <Marker
+                                icon={{ url: "http://img.icons8.com/dusk/24/000000/street-view.png" }}
+                                name={'Your position'}
+                                position={{ lat: this.state.LocationLat, lng: this.state.LocationLong }}
+                            />
+                        )
+                            : ++locationOnce
+                        }
 
 
                         {this.state.isMarkerVisible ? (
-
                             this.props.toggle ? (
-
                                 this.props.filteredCalls == null ? (
-
                                     this.props.policeCall.map(({ A, B, M, N, L, O }) => {
-
                                         return (
                                             mapVal < addCall ? (
                                                 ++mapVal,
                                                 <Marker
                                                     onClick={this.onMarkerClick}
+                                                    icon={{ url: this.decisionURL(L) }}
                                                     name={A}
                                                     info={B}
                                                     priority={L}
@@ -171,13 +193,13 @@ export class MapContainer extends Component {
                                                 ))
                                     }))
                                     : (this.props.filteredCalls.map(({ A, B, M, N, L, O }) => {
-
                                         return (
                                             mapVal < addCall ? (
                                                 ++mapVal,
                                                 <Marker
                                                     onClick={this.onMarkerClick}
                                                     name={A}
+                                                    icon={{ url: this.decisionURL(L) }}
                                                     info={B}
                                                     priority={L}
                                                     position={{ lat: M, lng: N }}
@@ -194,6 +216,7 @@ export class MapContainer extends Component {
                                             return (
                                                 <Marker
                                                     onClick={this.onMarkerClick}
+                                                    icon={{ url: this.decisionURL(L) }}
                                                     name={A}
                                                     info={B}
                                                     priority={L}
@@ -208,6 +231,7 @@ export class MapContainer extends Component {
                                                 return (
                                                     <Marker
                                                         onClick={this.onMarkerClick}
+                                                        icon={{ url: this.decisionURL(L) }}
                                                         name={A}
                                                         info={B}
                                                         priority={L}
@@ -219,7 +243,63 @@ export class MapContainer extends Component {
                                         )
                                 )) : null}
 
-                        {this.state.isHeatVisible ? heat : null}
+                        {mapVal = 0}
+                        
+                        {this.state.isHeatVisible ? (
+                            this.props.toggle ?
+                                (
+                                    this.props.filteredCalls == null ?
+                                        <HeatMap
+                                            gradient={gradient}
+                                            opacity={3}
+                                            positions={this.props.policeCall.map(({ M, N }) => {
+                                                if (mapVal < addCall) {
+                                                    console.log(++mapVal + ' Maping in: ' + M + '   ' + N)
+                                                    return {lat: M, lng: N };
+                                                }
+                                                else
+                                                    return {lat: 0, lng: 0};
+                                            })}
+                                            radius={30}
+                                        />
+                                        :
+                                        <HeatMap
+                                            gradient={gradient}
+                                            opacity={3}
+                                            positions={this.props.filteredCalls.map(({ M, N }) => {
+                                                if (mapVal < addCall) {
+                                                    console.log(++mapVal + ' Maping in: ' + M + '   ' + N)
+                                                    return { lat: M, lng: N };
+                                                }
+                                                else
+                                                    return { lat: 0, lng: 0 };
+                                            })}
+                                            radius={30}
+                                        />
+                                )
+                                :
+                                (
+                                    this.props.filteredCalls == null ?
+                                        <HeatMap
+                                            gradient={gradient}
+                                            opacity={3}
+                                            positions={this.props.policeCall.map(({ M, N }) => {
+
+                                                return { lat: M, lng: N };
+                                            })}
+                                            radius={30}
+                                        />
+                                        :
+                                        <HeatMap
+                                            gradient={gradient}
+                                            opacity={3}
+                                            positions={this.props.filteredCalls.map(({ M, N }) => {
+                                                return { lat: M, lng: N };
+                                            })}
+                                            radius={30}
+                                        />
+                                )
+                        ): null}
 
 
 
@@ -245,7 +325,7 @@ export class MapContainer extends Component {
 
 
 const Mcontainer = GoogleApiWrapper({
-    apiKey: '',
+    apiKey: '', 
     libraries: ["visualization"]
 })(MapContainer);
 

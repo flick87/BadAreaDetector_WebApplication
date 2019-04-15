@@ -212,7 +212,7 @@ class Visualizer extends React.Component {
         
         return (
 
-            <div class="column piecharts" style={{ color: '#4F6472' }}>
+            <div class="column piecharts" style={{ color: '#8D68EE' }}>
                 <h1 className="callTypeHeader">Call Type
                     <Tooltip showIcon='true' clickToOpen='true' triggerText=''>
 
@@ -230,11 +230,11 @@ class Visualizer extends React.Component {
                 
 
                 <div style={{ paddingLeft: '5%' }}>
-                    <Gauge value={gaugeAmount1} width={190} height={150} label='Call Type: 415' color='#748B99' />
-                    <Gauge value={gaugeAmount2} width={190} height={150} label='Call Type: 459A' color='#748B99' />
-                    <Gauge value={gaugeAmount3} width={190} height={150} label='Call Type: 1150' color='#748B99' />
-                    <Gauge value={gaugeAmount4} width={190} height={150} label='Call Type: 1151' color='#748B99' />
-                    <Gauge value={gaugeAmount5} width={190} height={150} label='Other' color='#748B99' />
+                    <Gauge value={gaugeAmount1} width={190} height={150} label='Call Type: 415' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
+                    <Gauge value={gaugeAmount2} width={190} height={150} label='Call Type: 459A' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
+                    <Gauge value={gaugeAmount3} width={190} height={150} label='Call Type: 1150' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
+                    <Gauge value={gaugeAmount4} width={190} height={150} label='Call Type: 1151' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
+                    <Gauge value={gaugeAmount5} width={190} height={150} label='Other' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
                 </div>
 
                 {/*Data Table with all calls*/}
