@@ -17,9 +17,11 @@ router.get('/', (req, res) => {
             if(count){
                 const d = JSON.parse(result);
                 const send = d.slice(0, count);
+                console.log("send: " + typeof send);
                 res.json(send); 
             }else{
-                res.json(JSON.parse(result));
+                const send = JSON.parse(result).slice(0, 1000);
+                res.json(send);;
             }
             
         }
@@ -28,7 +30,7 @@ router.get('/', (req, res) => {
 
 router.get('/dev', (req, res) => {
     const count = req.query.count;
-    console.log(count);
+    // console.log(count);
     console.log(typeof partial_data);
     res.json(partial_data);
 });

@@ -14,8 +14,8 @@ export const getPoliceCalls = () => dispatch =>{
           //json.sort(function (a, b) {
           //    return new Date(a.B) - new Date(b.B);
           //});
-
-          console.log(json)
+          // console.log(typeof json);
+          // console.log(json)
           dispatch({type: GET_POLICECALLS, payload: json});
       })
       .catch(err => console.log(err));
