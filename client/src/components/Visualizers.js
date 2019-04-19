@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import CallTable from './CallTable'
 import Gauge from 'react-svg-gauge'
 import { Tooltip } from 'carbon-components-react'
+import { Row, Col } from 'reactstrap'
+import MapContainer from './Map'
 
 var addCall = 0;
-var gaugeDetail = 20;
 var simulateOnce = true;
 var totalPriorityCalls = 0;
 var callType1 = 0;
@@ -66,13 +67,6 @@ class Visualizer extends React.Component {
                         gaugeAmount3 = Math.round((callType3 / totalPriorityCalls) * 100)
                         gaugeAmount4 = Math.round((callType4 / totalPriorityCalls) * 100)
                         gaugeAmount5 = Math.round((other / totalPriorityCalls) * 100)
-
-                        //console.log('THIS IS PRIORITY 1: ' + gaugeAmount1)
-                        //console.log('THIS IS PRIORITY 2: ' + gaugeAmount2)
-                        //console.log('THIS IS PRIORITY 3: ' + gaugeAmount3)
-                        //console.log('THIS IS PRIORITY 4: ' + gaugeAmount4)
-                        //console.log('Priority Call: ' + obj[addCall].L)
-
 
                         ++addCall
                         this.forceUpdate()
@@ -144,14 +138,6 @@ class Visualizer extends React.Component {
             priority.push(5)
             priority[5] = 0
 
-            //console.log('TTEEEESSST')
-
-            //console.log("Total amount of priority 1: " + priority[1])
-            //console.log("Total amount of priority 2: " + priority[2])
-            //console.log("Total amount of priority 3: " + priority[3])
-            //console.log("Total amount of priority 4: " + priority[4])
-            //console.log("Total calls: " + totalPriority)
-
             if (this.props.filteredCalls == null) {
                 this.props.policeCall.map(({ I }) => {
 
@@ -211,9 +197,10 @@ class Visualizer extends React.Component {
         }
         
         return (
-
             <div class="column piecharts" style={{ color: '#8D68EE' }}>
-                <h1 className="callTypeHeader">Call Type
+                <Row style={{ paddingTop: '2%' }}>
+                    <Col sm={6}>
+                        <h1 style={{ textAlign:'center' }}>Call Type 
                     <Tooltip showIcon='true' clickToOpen='true' triggerText=''>
 
                         <p style={{ textAlign: 'center' }}> Call types are abbreviated police codes. </p><hr />
@@ -225,22 +212,43 @@ class Visualizer extends React.Component {
                         <p style={{ textAlign: 'center' }}>'Other' represents a mixture of all other call types. </p>  
 
                     </Tooltip>
-                </h1>
+                        </h1>
+                    </Col>
+                    <Col sm={5} style={{ height: '40% !important', width: '30% !important', paddingLeft: '5%' }}>
+                        <MapContainer />
+                    </Col>
+                    <Col>
+
+                    </Col>
+                </Row>
 
                 
+                <Row>
+                    <Col sm={1.9}>
+                        <Gauge value={gaugeAmount1} width={200} height={150} label='Call Type: 415' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
+                    </Col>
+                    <Col sm={1.9}>
+                        <Gauge value={gaugeAmount2} width={200} height={150} label='Call Type: 459A' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
+                    </Col>
+                    <Col sm={1.9}>
+                        <Gauge value={gaugeAmount3} width={200} height={150} label='Call Type: 1150' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
+                    </Col>
+                    <Col sm={1.9}>
+                        <Gauge value={gaugeAmount4} width={200} height={150} label='Call Type: 1151' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
+                    </Col>
+                    <Col sm={1.9}>
+                        <Gauge value={gaugeAmount5} width={200} height={150} label='Other' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
+                    </Col>
+                    <Col sm={1}>
+                    </Col>
 
-                <div style={{ paddingLeft: '5%' }}>
-                    <Gauge value={gaugeAmount1} width={190} height={150} label='Call Type: 415' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
-                    <Gauge value={gaugeAmount2} width={190} height={150} label='Call Type: 459A' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
-                    <Gauge value={gaugeAmount3} width={190} height={150} label='Call Type: 1150' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
-                    <Gauge value={gaugeAmount4} width={190} height={150} label='Call Type: 1151' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
-                    <Gauge value={gaugeAmount5} width={190} height={150} label='Other' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
-                </div>
-
+                </Row>
                 {/*Data Table with all calls*/}
+                
                 <CallTable />
 
-            </div>
+                </div>
+            
         )
     }
 }

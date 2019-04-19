@@ -10,12 +10,13 @@ import {getPoliceCalls} from '../actions/policecallActions';
 import PropTypes from 'prop-types';
 import { Loading } from 'carbon-components-react'
 import { setTimeout } from 'timers';
+import { Container } from 'reactstrap'
+
 
 var loaded = true
 var runOnce = true
 
 class App extends Component{
-    
 
     componentDidMount(){
         this.props.getPoliceCalls();
@@ -42,13 +43,13 @@ class App extends Component{
         return (
             <div>
                 <Loading active={loaded} />
-                <Header />
-                <Graphs />
-                <Visualizers />
-                <div class="column map">
-                    <MapContainer/>
-                </div>
-                <br />
+                <Container fluid={true} style={{ backgroundColor: 'black' }}>
+                        <Header />
+                        <Graphs />
+                        <Visualizers />
+
+                        <br />
+                </Container>
             </div>
         )
     }

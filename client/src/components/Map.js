@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { setTimeout } from 'timers';
 
 const mapStyles = {
-    width: '45%',
-    height: '56.5%'
+    width: '100%',
+    height: '100%'
 };
 const h4style = {
     color: "black"
@@ -123,7 +123,6 @@ export class MapContainer extends Component {
         //Implement User Marker
         if (navigator.geolocation && locationOnce <= 2) {
             isLocation = true
-            console.log('TEST')
             navigator.geolocation.getCurrentPosition(this.showPosition)
         }
 
