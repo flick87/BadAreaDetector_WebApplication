@@ -43,7 +43,7 @@ class App extends Component{
         return (
             <div>
                 <Loading active={loaded} />
-                <Container fluid={true} style={{ backgroundColor: 'black' }}>
+                <Container fluid={true}>
                         <Header />
                         <Graphs />
                         <Visualizers />

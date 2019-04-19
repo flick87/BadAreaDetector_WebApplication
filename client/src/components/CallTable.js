@@ -3,6 +3,7 @@ import { DataTable } from 'carbon-components-react';
 import { connect } from 'react-redux';
 import { TableData } from 'carbon-components-react';
 import { setTimeout } from 'timers';
+import { Row, Col } from 'reactstrap'
 
 var rows;
 var addCall = 0;
@@ -147,8 +148,14 @@ class CallTable extends React.Component {
         return (
 
             <div>
-                <h1>Call Description</h1>
+                <Row>
+                    <Col>
+                        <h1 style={{ textAlign:'center' }}>Call Description</h1>
+                    </Col>
+                </Row>
 
+                <Row>
+                    <Col>
                     {this.props.toggle ? (
                     <div>
                         <DataTable
@@ -238,7 +245,8 @@ class CallTable extends React.Component {
                         </div>
                     )
                 }
-                         
+                    </Col>
+                </Row>     
             </div>
         )
     }

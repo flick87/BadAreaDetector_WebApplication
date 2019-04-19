@@ -214,12 +214,6 @@ class Visualizer extends React.Component {
                     </Tooltip>
                         </h1>
                     </Col>
-                    <Col sm={5} style={{ height: '40% !important', width: '30% !important', paddingLeft: '5%' }}>
-                        <MapContainer />
-                    </Col>
-                    <Col>
-
-                    </Col>
                 </Row>
 
                 
@@ -239,13 +233,19 @@ class Visualizer extends React.Component {
                     <Col sm={1.9}>
                         <Gauge value={gaugeAmount5} width={200} height={150} label='Other' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
                     </Col>
-                    <Col sm={1}>
+                    <Col sm={5} style={{ height: '40% !important', width: '30% !important', paddingLeft: '5%', alignSelf: 'center'}}>
+                        <MapContainer />
+                    </Col>
+                    <Col sm={6}>
+                        <CallTable />
+
                     </Col>
 
                 </Row>
                 {/*Data Table with all calls*/}
+
+
                 
-                <CallTable />
 
                 </div>
             
