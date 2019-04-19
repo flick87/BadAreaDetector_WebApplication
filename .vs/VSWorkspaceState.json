@@ -5,9 +5,8 @@
     "\\client\\public",
     "\\client\\src",
     "\\client\\src\\actions",
-    "\\client\\src\\components",
-    "\\client\\src\\components\\css components"
+    "\\client\\src\\components"
   ],
-  "SelectedNode": "\\client\\src\\components\\Map.js",
+  "SelectedNode": "\\client\\src\\components\\Visualizers.js",
   "PreviewInSolutionExplorer": false
 }
