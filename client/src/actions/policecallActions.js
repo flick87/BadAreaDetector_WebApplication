@@ -17,7 +17,7 @@ export const getPoliceCalls = () => dispatch =>{
           //});
           // console.log(typeof json);
           console.log(json);
-          dispatch({type: GET_POLICECALLS, payload: JSON.parse(json)});
+          dispatch({type: GET_POLICECALLS, payload: json});
       })
       .catch(err => console.log(err));
 };

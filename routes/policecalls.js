@@ -9,7 +9,7 @@ const partial_data = require('../partial_data');
 // const itemName = 'pd_calls.json';
 
 const bucketName = 'policecalls';
-const itemName = 'pdcalls_8.json';
+const itemName = 'pd_calls.json';
 
 router.get('/', (req, res) => {
     PoliceCallsModel.getItem(bucketName, itemName, (err, result) => {
