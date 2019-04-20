@@ -96,7 +96,7 @@ export class MapContainer extends Component {
     showPosition = (position) => {
         var temp1 = position.coords.latitude
         var temp2 = position.coords.longitude
-        this.setState({ LocationLat: temp1, LocationLong: temp2 })
+        this.setState({ LocationLat: temp1, LocationLong: temp2 }) 
     }
 
     render() {
