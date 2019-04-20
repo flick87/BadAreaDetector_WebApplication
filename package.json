@@ -13,7 +13,6 @@
   "author": "Alex Rodriguez",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^4.3.1",
     "concurrently": "^4.1.0",
     "cookie-parser": "^1.4.4",
     "cors": "^2.8.5",
@@ -21,8 +20,7 @@
     "express-session": "^1.15.6",
     "ibm-cos-sdk": "^1.4.3",
     "ibmcloud-appid": "^5.0.0",
-    "passport": "^0.4.0",
-    "reactstrap": "^8.0.0"
+    "passport": "^0.4.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"

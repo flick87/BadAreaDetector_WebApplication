@@ -13,7 +13,7 @@ const initialState = {
 const policeCallsReducer = (state = initialState, action) => {
     switch(action.type){
         case GET_POLICECALLS:
-            return {...state, policeCall: action.payload, loading: false};
+            return {...state, policeCall:[...state.policeCall,...action.payload], loading: false};
         case UPDATE_REFRESH:
             return {...state, refreshValue: action.payload};
         case TOGGLE_LIVE:
