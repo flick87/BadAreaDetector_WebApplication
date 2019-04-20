@@ -3,7 +3,6 @@ import { DataTable } from 'carbon-components-react';
 import { connect } from 'react-redux';
 import { TableData } from 'carbon-components-react';
 import { setTimeout } from 'timers';
-import { Row, Col } from 'reactstrap'
 
 var rows;
 var addCall = 0;
@@ -147,38 +146,33 @@ class CallTable extends React.Component {
 
         return (
 
-            <div>
-                <Row>
-                    <Col>
-                        <h1 style={{ textAlign:'center' }}>Call Description</h1>
-                    </Col>
-                </Row>
+            <div className="callDescSection">
+                <h1 className="callDescHeader">Call Description</h1>
 
-                <Row>
-                    <Col>
                     {this.props.toggle ? (
                     <div>
                         <DataTable
                             rows={rows}
                             headers={headers}
+                            className='tableStyle'
                             render={({rows, headers, getHeaderProps, onInputChange }) => (
 
                                 <TableContainer>
-                                    <TableToolbar>
+                                    <TableToolbar className='searchBar'>
                                         <TableToolbarSearch onChange={onInputChange} />
                                     </TableToolbar>
                                     <Table>
                                         <div className="scrollBar">
                                             <TableHead>
-                                                <TableRow header>
+                                                <TableRow header style={{ backgroundColor: 'white' }}>
                                                     {headers.map(header => (
-                                                        <TableHeader {...getHeaderProps({ header })}>
+                                                        <TableHeader {...getHeaderProps({ header })} className='headerUnstyle'>
                                                             {header.header}
                                                         </TableHeader>
                                                     ))}
                                                 </TableRow>
                                             </TableHead>
-                                            <TableBody>
+                                            <TableBody className='bodyTable'>
 
                                                 {rows.map(row => (
                                                     mapVal < addCall ? (
@@ -210,24 +204,25 @@ class CallTable extends React.Component {
                         <DataTable
                             rows={rows}
                             headers={headers}
+                            className='tableStyle'
                             render={({ rows, headers, getHeaderProps, onInputChange }) => (
 
                                 <TableContainer>
-                                    <TableToolbar>
+                                    <TableToolbar className='searchBar'>
                                         <TableToolbarSearch onChange={onInputChange} />
                                     </TableToolbar>
                                     <Table>
                                         <div className="scrollBar">
                                             <TableHead>
-                                                <TableRow header>
+                                                <TableRow header style={{ backgroundColor: 'white' }}>
                                                     {headers.map(header => (
-                                                        <TableHeader {...getHeaderProps({ header })}>
+                                                        <TableHeader {...getHeaderProps({ header })} className='headerUnstyle'>
                                                             {header.header}
                                                         </TableHeader>
                                                     ))}
                                                 </TableRow>
                                             </TableHead>
-                                            <TableBody>
+                                            <TableBody className='bodyTable'>
                                                 {rows.map(row => (
                                                     <TableRow key={row.id}>
                                                         {row.cells.map(cell => (
@@ -245,8 +240,7 @@ class CallTable extends React.Component {
                         </div>
                     )
                 }
-                    </Col>
-                </Row>     
+                         
             </div>
         )
     }

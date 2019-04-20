@@ -2,7 +2,6 @@ import React from 'react'
 import { BarGraph, LineGraph } from 'carbon-addons-data-viz-react'
 import { connect } from 'react-redux';
 import { Tooltip } from 'carbon-components-react'
-import { Row, Col } from 'reactstrap'
 
 
 var simulateOnce = true;
@@ -502,20 +501,11 @@ class Graphs extends React.Component {
             simulateOnce = true;
         }
 
-        if (this.props.policeCall.length > 200) {
-            console.log('Raw Date: ' + this.props.policeCall[2].B)
-            console.log('Epoch Time: ' + new Date(this.props.policeCall[2].B).getTime())
-        }
-        else {
-            console.log('FAIL')
-        }
 
         return (
-            <div>
-                <Row>
-                    <Col>
-                        <div>
-                            <h1 style={{ color: '#8D68EE', textAlign: 'center' }}> Priority Call Stats{/* Remove Padding if Button moves location */}
+            <div className="row">
+                <div class="column tableleft">
+                    <h1 className="graphsHeader" style={{ color: '#8D68EE', paddingTop: '3.8%' }}> Priority Call Stats{/* Remove Padding if Button moves location */}
                         <Tooltip showIcon='true' clickToOpen='true' triggerText=''>
                             <p style={{ textAlign: "center" }}>Priority calls are based on the urgency of the police call.</p>
                             <hr />
@@ -590,11 +580,11 @@ class Graphs extends React.Component {
                                 />)}
                     </div>
                 </div>
-                        </Col>
 
-                    <Col>
-                <div>
-                    <h1 style={{ color: '#8D68EE', textAlign: 'center' }}>Incoming Call Stats</h1>
+
+
+                <div class="column tableright">
+                    <h1 className="graphsHeader" style={{ color: '#8D68EE' }}>Incoming Call Stats</h1>
 
                     <div style={{ color: '#4F6472' }}>
                         <LineGraph
@@ -610,9 +600,7 @@ class Graphs extends React.Component {
                             color={['#8D68EE']}
                         />
                     </div>
-                        </div>
-                    </Col>
-                </Row>
+                </div>
             </div>
         )
     }

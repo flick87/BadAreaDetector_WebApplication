@@ -4,7 +4,6 @@ import { Toggle, DatePicker, DatePickerInput, ModalWrapper } from 'carbon-compon
 import { iconMenu } from 'carbon-icons'
 import { connect } from 'react-redux';
 import { toggleLive, updateRefresh, getPoliceCalls, filteredData } from '../actions/policecallActions';
-import { Container, Row, Col } from 'reactstrap'
 
 var isToggledAlready = true;
 var toggleInput = false;
@@ -128,22 +127,18 @@ class Header extends React.Component {
     render(props) {
         
         return (
-            <Row noGutters={false}>
-                <Col>
-                </Col>
-                <Col sm={10}>
-                    <div style={{ color: '#8D68EE', textAlign: 'center' }}>
-                        <h1>The Bad Area Detector System </h1>
-                    </div>
-                </Col>
 
-                <Col fluid={true}>
-                    <div style={{ float: 'right' }}>
+            <div>
+                <div className='header'>
+                    <h1>The Bad Area Detector System </h1>
+                </div>
+
+                <div className='Menu'>
+
                     <ModalWrapper
                         renderTriggerButtonIcon={true}
                         buttonTriggerText="Menu"
                         handleSubmit={this.submitHandler}
-                        shouldCloseAfterSubmit={true}
                     >
                         <div style={{ textAlign: "center" }}>
                             Menu
@@ -202,10 +197,12 @@ class Header extends React.Component {
                             />
                         />
                         </DatePicker>
-                        </ModalWrapper>
-                        </div>
-                </Col>
-            </Row>
+                    </ModalWrapper>
+                </div>
+
+
+
+            </div>
         )
     }
 }
