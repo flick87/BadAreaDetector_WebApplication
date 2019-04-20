@@ -16,6 +16,7 @@ router.get('/', (req, res) => {
         if(err){
             res.json(err);
         }else{
+            console.log(typeof result);
             res.json(result); 
         }
     });
