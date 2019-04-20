@@ -7,7 +7,7 @@ export const getPoliceCalls = () => dispatch =>{
     // when data reutrns dispatch to store you have received data and send it as payloadd
     // switch to '/api/policecalls' to receive actual police call data
   
-    fetch('/api/policecalls/dev') // '/api/policecalls/dev'
+    fetch('/api/policecalls') // '/api/policecalls/dev'
       .then(data => data.json())
       .then(json => {
 
@@ -19,7 +19,7 @@ export const getPoliceCalls = () => dispatch =>{
           //console.log(typeof json);
           //console.log(json);
           //console.log(JSON.parse(json));
-          dispatch({type: GET_POLICECALLS, payload: json});
+          dispatch({type: GET_POLICECALLS, payload: JSON.parse(json)});
       })
       .catch(err => console.log(err));
 };
