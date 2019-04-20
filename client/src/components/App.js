@@ -19,8 +19,8 @@ class App extends Component{
 
     componentDidMount(){
         this.props.getPoliceCalls();
-        console.log('TEST PRINT')
     }
+
     //Uncomment to implement loading feature
     Loading() {
         setTimeout(() => {

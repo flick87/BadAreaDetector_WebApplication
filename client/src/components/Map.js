@@ -71,7 +71,6 @@ export class MapContainer extends Component {
         setTimeout(() => {
             if (this.props.toggle && this.props.refresh === refresh && (this.props.filteredCalls === null ? this.props.policeCall.length === length : this.props.filteredCalls.length === length)) {
                 if (addCall < length - 1) {
-                    //console.log('Simulating from Map')
                     ++addCall;
                     mapVal = 0;
                     this.forceUpdate();
@@ -79,7 +78,6 @@ export class MapContainer extends Component {
                 }
                 else {
                     simulateOnce = true;
-                    //console.log('Simulation finished!')
                 }
             }
             else {
@@ -123,7 +121,6 @@ export class MapContainer extends Component {
         //Implement User Marker
         if (navigator.geolocation && locationOnce <= 2) {
             isLocation = true
-            console.log('TEST')
             navigator.geolocation.getCurrentPosition(this.showPosition)
         }
 
@@ -160,7 +157,6 @@ export class MapContainer extends Component {
                     >
 
                         {isLocation ? (
-                            console.log('Display Marker True'),
                             ++locationOnce,
                             <Marker
                                 icon={{ url: "http://img.icons8.com/dusk/24/000000/street-view.png" }}
@@ -254,7 +250,6 @@ export class MapContainer extends Component {
                                             opacity={3}
                                             positions={this.props.policeCall.map(({ M, N }) => {
                                                 if (mapVal < addCall) {
-                                                    console.log(++mapVal + ' Maping in: ' + M + '   ' + N)
                                                     return {lat: M, lng: N };
                                                 }
                                                 else
@@ -268,7 +263,6 @@ export class MapContainer extends Component {
                                             opacity={3}
                                             positions={this.props.filteredCalls.map(({ M, N }) => {
                                                 if (mapVal < addCall) {
-                                                    console.log(++mapVal + ' Maping in: ' + M + '   ' + N)
                                                     return { lat: M, lng: N };
                                                 }
                                                 else

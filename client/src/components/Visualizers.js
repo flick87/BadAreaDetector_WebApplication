@@ -35,7 +35,6 @@ class Visualizer extends React.Component {
     simulate(obj, refresh, length) {
         setTimeout(
             () => {
-                //console.log('Displaying!')
                 if (this.props.toggle && this.props.refresh === refresh && (this.props.filteredCalls == null ? this.props.policeCall.length === length : this.props.filteredCalls.length === length)) {
                     if (addCall < obj.length - 1) {
 
@@ -66,12 +65,6 @@ class Visualizer extends React.Component {
                         gaugeAmount3 = Math.round((callType3 / totalPriorityCalls) * 100)
                         gaugeAmount4 = Math.round((callType4 / totalPriorityCalls) * 100)
                         gaugeAmount5 = Math.round((other / totalPriorityCalls) * 100)
-
-                        //console.log('THIS IS PRIORITY 1: ' + gaugeAmount1)
-                        //console.log('THIS IS PRIORITY 2: ' + gaugeAmount2)
-                        //console.log('THIS IS PRIORITY 3: ' + gaugeAmount3)
-                        //console.log('THIS IS PRIORITY 4: ' + gaugeAmount4)
-                        //console.log('Priority Call: ' + obj[addCall].L)
 
 
                         ++addCall
@@ -144,14 +137,7 @@ class Visualizer extends React.Component {
             priority.push(5)
             priority[5] = 0
 
-            //console.log('TTEEEESSST')
-
-            //console.log("Total amount of priority 1: " + priority[1])
-            //console.log("Total amount of priority 2: " + priority[2])
-            //console.log("Total amount of priority 3: " + priority[3])
-            //console.log("Total amount of priority 4: " + priority[4])
-            //console.log("Total calls: " + totalPriority)
-
+            
             if (this.props.filteredCalls == null) {
                 this.props.policeCall.map(({ I }) => {
                     if (I === 'DISTURBING PEACE') {
