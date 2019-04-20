@@ -175,7 +175,7 @@ export class MapContainer extends Component {
                         {this.state.isMarkerVisible ? (
                             this.props.toggle ? (
                                 this.props.filteredCalls == null ? (
-                                    this.props.policeCall.map(({ A, B, M, N, L, O }) => {
+                                    this.props.policeCall.map(({ A, B, M, N, L, I }) => {
                                         return (
                                             mapVal < addCall ? (
                                                 ++mapVal,
@@ -186,13 +186,13 @@ export class MapContainer extends Component {
                                                     info={B}
                                                     priority={L}
                                                     position={{ lat: M, lng: N }}
-                                                    story={O}
+                                                    story={I}
                                                 />
                                             ) : (
                                                     ''
                                                 ))
                                     }))
-                                    : (this.props.filteredCalls.map(({ A, B, M, N, L, O }) => {
+                                    : (this.props.filteredCalls.map(({ A, B, M, N, L, I }) => {
                                         return (
                                             mapVal < addCall ? (
                                                 ++mapVal,
@@ -203,7 +203,7 @@ export class MapContainer extends Component {
                                                     info={B}
                                                     priority={L}
                                                     position={{ lat: M, lng: N }}
-                                                    story={O}
+                                                    story={I}
                                                 />
                                             ) : (
                                                     ''
@@ -212,7 +212,7 @@ export class MapContainer extends Component {
                             ) : (
 
                                     this.props.filteredCalls == null ? (
-                                        this.props.policeCall.map(({ A, B, M, N, L, O }) => {
+                                        this.props.policeCall.map(({ A, B, M, N, L, I}) => {
                                             return (
                                                 <Marker
                                                     onClick={this.onMarkerClick}
@@ -221,13 +221,13 @@ export class MapContainer extends Component {
                                                     info={B}
                                                     priority={L}
                                                     position={{ lat: M, lng: N }}
-                                                    story={O}
+                                                    story={I}
                                                 />
                                             )
                                         })
                                     )
                                         : (
-                                            this.props.filteredCalls.map(({ A, B, M, N, L, O }) => {
+                                            this.props.filteredCalls.map(({ A, B, M, N, L, I}) => {
                                                 return (
                                                     <Marker
                                                         onClick={this.onMarkerClick}
@@ -236,7 +236,7 @@ export class MapContainer extends Component {
                                                         info={B}
                                                         priority={L}
                                                         position={{ lat: M, lng: N }}
-                                                        story={O}
+                                                        story={I}
                                                     />
                                                 )
                                             })
@@ -325,7 +325,7 @@ export class MapContainer extends Component {
 
 
 const Mcontainer = GoogleApiWrapper({
-    apiKey: '', 
+    apiKey: 'AIzaSyBxXtV6UaJaE_bU_7VTwm745vpO8l_NP5A', 
     libraries: ["visualization"]
 })(MapContainer);
 

@@ -154,20 +154,19 @@ class Visualizer extends React.Component {
 
             if (this.props.filteredCalls == null) {
                 this.props.policeCall.map(({ I }) => {
-
-                    if (I === '415') {
+                    if (I === 'DISTURBING PEACE') {
                         priority[1]++
                         totalPriority++
                     }
-                    else if (I === '459A') {
+                    else if (I === 'BURGLARY ALARM') {
                         priority[2]++
                         totalPriority++
                     }
-                    else if (I === '1150') {
+                    else if (I === 'TRAFFIC STOP/WITHLICENSE') {
                         priority[3]++
                         totalPriority++
                     }
-                    else if (I === '1151') {
+                    else if (I === 'PED STOP/FIELD INTERVIEW') {
                         priority[4]++
                         totalPriority++
                     }
@@ -180,19 +179,19 @@ class Visualizer extends React.Component {
 
             else {
                 this.props.filteredCalls.map(({ I }) => {
-                    if (I === '415') {
+                    if (I === 'DISTURBING PEACE') {
                         priority[1]++
                         totalPriority++
                     }
-                    else if (I === '459A') {
+                    else if (I === 'BURGLARY ALARM') {
                         priority[2]++
                         totalPriority++
                     }
-                    else if (I === '1150') {
+                    else if (I === 'TRAFFIC STOP/WITHLICENSE') {
                         priority[3]++
                         totalPriority++
                     }
-                    else if (I === '1151') {
+                    else if (I === 'PED STOP/FIELD INTERVIEW') {
                         priority[4]++
                         totalPriority++
                     }
@@ -230,10 +229,10 @@ class Visualizer extends React.Component {
                 
 
                 <div style={{ paddingLeft: '5%' }}>
-                    <Gauge value={gaugeAmount1} width={190} height={150} label='Call Type: 415' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
-                    <Gauge value={gaugeAmount2} width={190} height={150} label='Call Type: 459A' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
-                    <Gauge value={gaugeAmount3} width={190} height={150} label='Call Type: 1150' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
-                    <Gauge value={gaugeAmount4} width={190} height={150} label='Call Type: 1151' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
+                    <Gauge value={gaugeAmount1} width={190} height={150} label='415' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
+                    <Gauge value={gaugeAmount2} width={190} height={150} label='459A' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
+                    <Gauge value={gaugeAmount3} width={190} height={150} label='1150' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
+                    <Gauge value={gaugeAmount4} width={190} height={150} label='1151' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
                     <Gauge value={gaugeAmount5} width={190} height={150} label='Other' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
                 </div>
 

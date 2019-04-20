@@ -6,7 +6,9 @@
     "\\client\\src",
     "\\client\\src\\actions",
     "\\client\\src\\components",
-    "\\client\\src\\components\\css components"
+    "\\client\\src\\components\\css components",
+    "\\models",
+    "\\routes"
   ],
   "SelectedNode": "\\client\\src\\components\\Map.js",
   "PreviewInSolutionExplorer": false
