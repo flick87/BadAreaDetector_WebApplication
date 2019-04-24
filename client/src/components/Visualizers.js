@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import CallTable from './CallTable'
 import Gauge from 'react-svg-gauge'
 import { Tooltip } from 'carbon-components-react'
+import MapContainer from './Map'
 
 var addCall = 0;
 var gaugeDetail = 20;
@@ -58,7 +58,7 @@ class Visualizer extends React.Component {
                             ++other
                             ++totalPriorityCalls
                         }
-                        
+
 
                         gaugeAmount1 = Math.round((callType1 / totalPriorityCalls) * 100)
                         gaugeAmount2 = Math.round((callType2 / totalPriorityCalls) * 100)
@@ -137,7 +137,7 @@ class Visualizer extends React.Component {
             priority.push(5)
             priority[5] = 0
 
-            
+
             if (this.props.filteredCalls == null) {
                 this.props.policeCall.map(({ I }) => {
                     if (I === 'DISTURBING PEACE') {
@@ -194,36 +194,40 @@ class Visualizer extends React.Component {
             gaugeAmount4 = Math.round((priority[4] / totalPriority) * 100)
             gaugeAmount5 = Math.round((priority[5] / totalPriority) * 100)
         }
-        
+
         return (
 
-            <div class="column piecharts" style={{ color: '#8D68EE' }}>
-                <h1 className="callTypeHeader">Call Type
-                    <Tooltip showIcon='true' clickToOpen='true' triggerText=''>
+            <div className='flex-container' style={{ color: '#8D68EE', paddingTop: '2%', paddingRight: '4%' }}>
+                <div className='FlexGauges'>
+                    <h1 style={{ textAlign: 'center' }}>Call Type
+                        <Tooltip showIcon='true' clickToOpen='true' triggerText=''>
 
-                        <p style={{ textAlign: 'center' }}> Call types are abbreviated police codes. </p><hr />
+                            <p style={{ textAlign: 'center' }}> Call types are abbreviated police codes. </p><hr />
 
-                        415 - Disturbing the peace <br /> <hr />
-                        459A - Burglary alarm <br /> <hr />
-                        1150 - Traffic stop with license <br /> <hr />
-                        1151 - Pedestrian stop / Field interview <br /> <hr />
-                        <p style={{ textAlign: 'center' }}>'Other' represents a mixture of all other call types. </p>  
+                            415 - Disturbing the peace <br /> <hr />
+                            459A - Burglary alarm <br /> <hr />
+                            1150 - Traffic stop with license <br /> <hr />
+                            1151 - Pedestrian stop / Field interview <br /> <hr />
+                            <p style={{ textAlign: 'center' }}>'Other' represents a mixture of all other call types. </p>
 
-                    </Tooltip>
-                </h1>
+                        </Tooltip>
+                    </h1>
 
-                
 
-                <div style={{ paddingLeft: '5%' }}>
-                    <Gauge value={gaugeAmount1} width={190} height={150} label='415' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
-                    <Gauge value={gaugeAmount2} width={190} height={150} label='459A' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
-                    <Gauge value={gaugeAmount3} width={190} height={150} label='1150' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
-                    <Gauge value={gaugeAmount4} width={190} height={150} label='1151' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
-                    <Gauge value={gaugeAmount5} width={190} height={150} label='Other' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
+
+                    <div>
+                        <Gauge value={gaugeAmount1} width={190} height={150} label='415' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
+                        <Gauge value={gaugeAmount2} width={190} height={150} label='459A' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
+                        <Gauge value={gaugeAmount3} width={190} height={150} label='1150' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
+                        <Gauge value={gaugeAmount4} width={190} height={150} label='1151' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
+                        <Gauge value={gaugeAmount5} width={190} height={150} label='Other' color='#FE7B6B' topLabelStyle='fill: #8D68EE' />
+                    </div>
                 </div>
 
                 {/*Data Table with all calls*/}
-                <CallTable />
+                <div className='FlexMap'>
+                    <MapContainer />
+                </div>
 
             </div>
         )

@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { setTimeout } from 'timers';
 
 const mapStyles = {
-    width: '45%',
-    height: '56.5%'
+    width: '47%',
+    height: '58.5%',
 };
 const h4style = {
     color: "black"
@@ -52,7 +52,7 @@ export class MapContainer extends Component {
 
     decisionURL = L => {
         let imageURL = "";
-        
+
         if (L === "1") {
             imageURL = "http://maps.google.com/mapfiles/ms/icons/purple-dot.png";
         } else if (L === "2") {
@@ -96,10 +96,14 @@ export class MapContainer extends Component {
     showPosition = (position) => {
         var temp1 = position.coords.latitude
         var temp2 = position.coords.longitude
-        this.setState({ LocationLat: temp1, LocationLong: temp2 }) 
+        this.setState({ LocationLat: temp1, LocationLong: temp2 })
     }
 
+
+
     render() {
+
+
 
         const gradient = [
             "rgba(0, 255, 255, 0)",
@@ -208,7 +212,7 @@ export class MapContainer extends Component {
                             ) : (
 
                                     this.props.filteredCalls == null ? (
-                                        this.props.policeCall.map(({ A, B, M, N, L, I}) => {
+                                        this.props.policeCall.map(({ A, B, M, N, L, I }) => {
                                             return (
                                                 <Marker
                                                     onClick={this.onMarkerClick}
@@ -223,7 +227,7 @@ export class MapContainer extends Component {
                                         })
                                     )
                                         : (
-                                            this.props.filteredCalls.map(({ A, B, M, N, L, I}) => {
+                                            this.props.filteredCalls.map(({ A, B, M, N, L, I }) => {
                                                 return (
                                                     <Marker
                                                         onClick={this.onMarkerClick}
@@ -240,7 +244,7 @@ export class MapContainer extends Component {
                                 )) : null}
 
                         {mapVal = 0}
-                        
+
                         {this.state.isHeatVisible ? (
                             this.props.toggle ?
                                 (
@@ -250,10 +254,10 @@ export class MapContainer extends Component {
                                             opacity={3}
                                             positions={this.props.policeCall.map(({ M, N }) => {
                                                 if (mapVal < addCall) {
-                                                    return {lat: M, lng: N };
+                                                    return { lat: M, lng: N };
                                                 }
                                                 else
-                                                    return {lat: 0, lng: 0};
+                                                    return { lat: 0, lng: 0 };
                                             })}
                                             radius={30}
                                         />
@@ -293,7 +297,7 @@ export class MapContainer extends Component {
                                             radius={30}
                                         />
                                 )
-                        ): null}
+                        ) : null}
 
 
 
@@ -319,7 +323,7 @@ export class MapContainer extends Component {
 
 
 const Mcontainer = GoogleApiWrapper({
-    apiKey: 'AIzaSyBxXtV6UaJaE_bU_7VTwm745vpO8l_NP5A', 
+    apiKey: '',
     libraries: ["visualization"]
 })(MapContainer);
 

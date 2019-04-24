@@ -1,23 +1,23 @@
-
-import React, {Component}from 'react'
+import React, { Component } from 'react'
 import './css components/App.css'
 import Header from './Header'
 import Graphs from './Graphs'
 import Visualizers from './Visualizers'
 import MapContainer from './Map'
-import {connect} from 'react-redux';
-import {getPoliceCalls} from '../actions/policecallActions';
+import { connect } from 'react-redux';
+import { getPoliceCalls } from '../actions/policecallActions';
 import PropTypes from 'prop-types';
 import { Loading } from 'carbon-components-react'
 import { setTimeout } from 'timers';
+import CallTable from './CallTable'
 
 var loaded = true
 var runOnce = true
 
-class App extends Component{
-    
+class App extends Component {
 
-    componentDidMount(){
+
+    componentDidMount() {
         this.props.getPoliceCalls();
     }
 
@@ -45,8 +45,12 @@ class App extends Component{
                 <Header />
                 <Graphs />
                 <Visualizers />
-                <div class="column map">
-                    <MapContainer/>
+                <div className='flex-container'>
+                    <div className='flex-table'>
+                        <CallTable />
+                    </div>
+                    <div className='flex-pad'>
+                    </div>
                 </div>
                 <br />
             </div>
@@ -63,4 +67,4 @@ const mapStateToProps = (state) => ({
 });
 
 // export default App
-export default connect(mapStateToProps, {getPoliceCalls})(App);
+export default connect(mapStateToProps, { getPoliceCalls })(App);

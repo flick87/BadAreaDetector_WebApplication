@@ -10,6 +10,6 @@
     "\\models",
     "\\routes"
   ],
-  "SelectedNode": "\\client\\src\\components\\Map.js",
+  "SelectedNode": "\\client\\src\\actions\\policecallActions.js",
   "PreviewInSolutionExplorer": false
 }

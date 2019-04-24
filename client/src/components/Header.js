@@ -1,7 +1,6 @@
 import React from 'react'
 import { Slider } from 'carbon-components-react'
 import { Toggle, DatePicker, DatePickerInput, ModalWrapper } from 'carbon-components-react'
-import { iconMenu } from 'carbon-icons'
 import { connect } from 'react-redux';
 import { toggleLive, updateRefresh, getPoliceCalls, filteredData } from '../actions/policecallActions';
 
@@ -59,23 +58,23 @@ class Header extends React.Component {
     }
 
     dateHandler(value) {
-            if (value.length > 1) {
+        if (value.length > 1) {
 
-                console.log('THE DATE IS CHOSEN: ' + value[0])
-                var date = new Date(value[0])
-                var startDate = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() + ' 00:00'
+            console.log('THE DATE IS CHOSEN: ' + value[0])
+            var date = new Date(value[0])
+            var startDate = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() + ' 00:00'
 
-                
-                var date2 = new Date(value[1])
-                var endDate = (date2.getMonth() + 1) + '/' + date2.getDate() + '/' + date2.getFullYear() + ' 23:59'
 
-                //console.log('Start date: ' + startDate)
-                //console.log('End date: ' + endDate)
+            var date2 = new Date(value[1])
+            var endDate = (date2.getMonth() + 1) + '/' + date2.getDate() + '/' + date2.getFullYear() + ' 23:59'
 
-                this.setState({ startDate: startDate, endDate: endDate });
+            //console.log('Start date: ' + startDate)
+            //console.log('End date: ' + endDate)
 
-                this.filterDates()
-            }
+            this.setState({ startDate: startDate, endDate: endDate });
+
+            this.filterDates()
+        }
     }
 
     filterDates() {
@@ -112,7 +111,7 @@ class Header extends React.Component {
 
         toggleInput = this.state.liveToggled
         toggleRefresh = this.state.refreshValue
-        
+
         if (!toggleInput) {
             isToggledAlready = true;
         }
@@ -125,15 +124,15 @@ class Header extends React.Component {
 
 
     render(props) {
-        
+
         return (
 
-            <div>
-                <div className='header'>
-                    <h1>The Bad Area Detector System </h1>
+            <div className='flex-container'>
+                <div className='Flex1'>
+                    <h1 style={{ textAlign: 'center', color: '#8D68EE' }}>The Bad Area Detector System </h1>
                 </div>
 
-                <div className='Menu'>
+                <div className='Flex2'>
 
                     <ModalWrapper
                         renderTriggerButtonIcon={true}
@@ -195,7 +194,7 @@ class Header extends React.Component {
                                 labelText='End Date'
                                 placeHolder='mm/dd/yyyy'
                             />
-                        />
+                            />
                         </DatePicker>
                     </ModalWrapper>
                 </div>
@@ -214,4 +213,4 @@ const mapStateToProps = (state) => ({
     filteredCalls: state.policeCall.filteredData
 });
 
-export default connect(mapStateToProps, {getPoliceCalls, toggleLive, updateRefresh, filteredData})(Header)
+export default connect(mapStateToProps, { getPoliceCalls, toggleLive, updateRefresh, filteredData })(Header)
