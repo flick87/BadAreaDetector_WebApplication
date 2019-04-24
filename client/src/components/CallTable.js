@@ -31,7 +31,7 @@ class CallTable extends React.Component {
         this.simulateData = this.simulateData.bind(this)
     }
 
-    
+
     simulateData(rows, refresh, length) {
 
         setTimeout(() => {
@@ -60,7 +60,7 @@ class CallTable extends React.Component {
                     console.log('Simulation Finished!')
                 }
             }
-            
+
         }, this.props.refresh * 1000)
     }
 
@@ -94,8 +94,8 @@ class CallTable extends React.Component {
         else if (this.props.filteredCalls != null && simulateOnce) {
             this.displayAllData(this.props.filteredCalls)
         }
-        
-            
+
+
         //IMPLEMENT SIMULATION
         if (this.props.toggle && simulateOnce) {
             simulateOnce = false;
@@ -106,7 +106,7 @@ class CallTable extends React.Component {
             simulateOnce = true;
             addCall = 0
         }
-        
+
 
         const headers = [
             {
@@ -146,19 +146,18 @@ class CallTable extends React.Component {
 
         return (
 
-            <div className="callDescSection">
-                <h1 className="callDescHeader">Call Description</h1>
+            <div>
+                <h1 style={{ textAlign: 'center', color: '#8D68EE' }}>Call Description</h1>
 
-                    {this.props.toggle ? (
+                {this.props.toggle ? (
                     <div>
                         <DataTable
                             rows={rows}
                             headers={headers}
-                            className='tableStyle'
-                            render={({rows, headers, getHeaderProps, onInputChange }) => (
+                            render={({ rows, headers, getHeaderProps, onInputChange }) => (
 
                                 <TableContainer>
-                                    <TableToolbar className='searchBar'>
+                                    <TableToolbar>
                                         <TableToolbarSearch onChange={onInputChange} />
                                     </TableToolbar>
                                     <Table>
@@ -166,29 +165,29 @@ class CallTable extends React.Component {
                                             <TableHead>
                                                 <TableRow header style={{ backgroundColor: 'white' }}>
                                                     {headers.map(header => (
-                                                        <TableHeader {...getHeaderProps({ header })} className='headerUnstyle'>
+                                                        <TableHeader {...getHeaderProps({ header })}>
                                                             {header.header}
                                                         </TableHeader>
                                                     ))}
                                                 </TableRow>
                                             </TableHead>
-                                            <TableBody className='bodyTable'>
+                                            <TableBody>
 
                                                 {rows.map(row => (
                                                     mapVal < addCall ? (
                                                         ++mapVal,
                                                         <TableRow key={row.id}>
                                                             {row.cells.map(cell => (
-                                                            <TableData>
-                                                                    {<TableCell key={cell.id}> 
+                                                                <TableData>
+                                                                    {<TableCell key={cell.id}>
                                                                         {cell.value}
                                                                     </TableCell>}
-                                                            </TableData>))}
+                                                                </TableData>))}
                                                         </TableRow>
                                                     )
                                                         : (
                                                             ''
-                                                            )
+                                                        )
                                                 ))}
 
                                             </TableBody>
@@ -198,49 +197,48 @@ class CallTable extends React.Component {
                             )} />
                     </div>
 
-                    )
+                )
                     : (
                         <div>
-                        <DataTable
-                            rows={rows}
-                            headers={headers}
-                            className='tableStyle'
-                            render={({ rows, headers, getHeaderProps, onInputChange }) => (
+                            <DataTable
+                                rows={rows}
+                                headers={headers}
+                                render={({ rows, headers, getHeaderProps, onInputChange }) => (
 
-                                <TableContainer>
-                                    <TableToolbar className='searchBar'>
-                                        <TableToolbarSearch onChange={onInputChange} />
-                                    </TableToolbar>
-                                    <Table>
-                                        <div className="scrollBar">
-                                            <TableHead>
-                                                <TableRow header style={{ backgroundColor: 'white' }}>
-                                                    {headers.map(header => (
-                                                        <TableHeader {...getHeaderProps({ header })} className='headerUnstyle'>
-                                                            {header.header}
-                                                        </TableHeader>
-                                                    ))}
-                                                </TableRow>
-                                            </TableHead>
-                                            <TableBody className='bodyTable'>
-                                                {rows.map(row => (
-                                                    <TableRow key={row.id}>
-                                                        {row.cells.map(cell => (
-                                                            <TableData>
-                                                                    <TableCell key={cell.id}> {cell.value} </TableCell>
-                                                            </TableData>
+                                    <TableContainer>
+                                        <TableToolbar>
+                                            <TableToolbarSearch onChange={onInputChange} />
+                                        </TableToolbar>
+                                        <Table>
+                                            <div className="scrollBar">
+                                                <TableHead>
+                                                    <TableRow header style={{ backgroundColor: 'white' }}>
+                                                        {headers.map(header => (
+                                                            <TableHeader {...getHeaderProps({ header })}>
+                                                                {header.header}
+                                                            </TableHeader>
                                                         ))}
                                                     </TableRow>
-                                                ))}
-                                            </TableBody>
-                                        </div>
-                                    </Table>
-                                </TableContainer>
+                                                </TableHead>
+                                                <TableBody>
+                                                    {rows.map(row => (
+                                                        <TableRow key={row.id}>
+                                                            {row.cells.map(cell => (
+                                                                <TableData>
+                                                                    <TableCell key={cell.id}> {cell.value} </TableCell>
+                                                                </TableData>
+                                                            ))}
+                                                        </TableRow>
+                                                    ))}
+                                                </TableBody>
+                                            </div>
+                                        </Table>
+                                    </TableContainer>
                                 )} />
                         </div>
                     )
                 }
-                         
+
             </div>
         )
     }
